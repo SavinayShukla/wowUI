@@ -1,0 +1,86 @@
+<div class="bg-primary flex flex-row justify-center items-start">
+  <!-- Search Filters Column -->
+  <div class="bg-secondary p-6 flex flex-col rounded-2xl shadow-xl mt-10 sticky top-10 ">
+    <form>
+      <div class="flex items-center justify-center">
+        <h2 class="font-semibold mb-3 text-gray-300">Car Type</h2>
+      </div>
+      <!-- Car Type Filter -->
+      <div class="mb-3">
+        <label class="flex items-center">
+          <input type="checkbox" class="form-checkbox" name="carType[]" value="sedan" />
+          <span class="ml-2 text-gray-300">Sedan</span>
+        </label>
+      </div>
+      <!-- Transmission Type Filter -->
+      <div class="mb-3">
+        <label class="flex items-center">
+          <input type="checkbox" class="form-checkbox" name="carType[]" value="suv" />
+          <span class="ml-2 text-gray-300 ">SUV</span>
+        </label>
+      </div>
+
+      <!-- Fuel Type Filter -->
+      <div class="mb-3">
+        <label class="flex items-center">
+          <input type="checkbox" class="form-checkbox" name="carType[]" value="hatchback" />
+          <span class="ml-2 text-gray-300">Hatchback</span>
+        </label>
+      </div>
+
+      <div class="pt-10 flex items-center justify-center">
+        <h2 class="font-bold mb-3 text-gray-300">Price Range</h2>
+      </div>
+
+      <!-- Price Range Filters -->
+      <div class="mb-3">
+        <label class="flex items-center">
+          <input type="checkbox" class="form-checkbox" name="priceRange[]" value="<80" />
+          <span class="ml-2 text-gray-300">
+            < $80/day</span>
+        </label>
+      </div>
+
+      <div class="mb-3">
+        <label class="flex items-center">
+          <input type="checkbox" class="form-checkbox" name="priceRange[]" value="80-120" />
+          <span class="ml-2 text-gray-300">$80/day - $120/day</span>
+        </label>
+      </div>
+
+      <div class="mb-3">
+        <label class="flex items-center">
+          <input type="checkbox" class="form-checkbox" name="priceRange[]" value="120-240" />
+          <span class="ml-2 text-gray-300">$120/day - $240/day</span>
+        </label>
+      </div>
+
+      <div class="mb-3">
+        <label class="flex items-center">
+          <input type="checkbox" class="form-checkbox" name="priceRange[]" value=">240" />
+          <span class="ml-2 text-gray-300"> > $240/day</span>
+        </label>
+      </div>
+      <!-- Other Filters... -->
+
+      <!-- Submit Button -->
+      <div class="pt-10 flex items-center justify-center">
+        <button type="submit" class="bg-indigo-500 text-white font-bold py-2 px-4 rounded">
+          Apply Filter
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- Result Cards Column -->
+  <div class="bg-gray-900 container mt-10 mx-8 mb-10 w-2/3 flex flex-col justify-center items-center rounded-2xl shadow-xl p-10">
+    <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+  </div>
+</div>
