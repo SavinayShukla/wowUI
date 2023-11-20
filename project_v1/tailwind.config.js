@@ -9,17 +9,17 @@ module.exports = {
         'sans': ['"Inter"'],
       },
       backgroundColor: {
-        primary: '#030712',
-        secondary: '#042f2e',
-        button: '#6366f1'
+        primary: '#18181b',
+        secondary: '#262626',
+        tertiary: '#404040',
       },
       textColor: {
         primary: '#ffffff',
         secondary: '#cbd5e0',
       },
       borderColor: {
-        primary: '#4a5568',
-        secondary: '#718096',
+        primary: '#3f3f46',
+        secondary: '#71717a',
       },
       extend: {
         colors: {
