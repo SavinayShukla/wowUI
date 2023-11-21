@@ -18,18 +18,19 @@ module.exports = {
         secondary: '#cbd5e0',
       },
       borderColor: {
-        primary: '#3f3f46',
+        primary: '#18181b',
         secondary: '#71717a',
       },
       extend: {
         colors: {
           accent: {
             primary: '#3498db',
-            secondary: '#e74c3c',
+            secondary: '#10b981',
           },
         },
       },
     },
   },
-  plugins: [],
+  plugins: [
+  ]
 }
