@@ -1,0 +1,52 @@
+<div class="w-full border rounded-3xl flex flex-col">
+    <div class="rounded-t-3xl bg-secondary py-3 flex flex-row">
+        <div class="p-2 w-1/4 col-span-1 flex flex-col items-center justify-center">
+            <h1 class="font-bold text-gray-200">Order Number</h1>
+            <p class="text-gray-200">1231245532423</p>
+        </div>
+        <div class="p-2 w-2/4 col-span-1 flex flex-col items-start justify-center">
+            <h1 class="font-bold text-gray-200">Order Date</h1>
+            <p class="text-gray-200">12/05/2023</p>
+        </div>
+        <div class="p-2 w-1/4 col-span-1 flex flex-row items-center justify-center">
+            <i class="fa-solid fa-clock" style="color: #ffd642;"></i>
+            <p class="mx-2 text-lg font-bold" style="color: #ffd642;">On-going</p>
+            <!-- <button
+                class="mx-4 px-2 py-2 rounded-md bg-secondary border border-2 border-emerald-500 shadow-xl text-emerald-500">View
+                Invoice</button> -->
+        </div>
+    </div>
+    <div class="py-3 flex flex-row">
+        <div class="p-2 w-1/4 col-span-1 flex flex-col items-center justify-center">
+            <img class="w-1/2" src="assets/car.png" />
+        </div>
+        <div class="p-2 w-2/4 col-span-1 flex flex-col items-start justify-center">
+            <div class="text-emerald-500 ">Mercedes</div>
+            <div class="text-gray-200 font-bold text-xl">SLS-300 2023</div>
+            <div class="text-emerald-500 ">Luxury Sedan</div>
+            <div class="py-2 flex flex-row">
+                <span
+                    class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Comfortable</span>
+                <span
+                    class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Economic</span>
+                <span
+                    class="bg-teal-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Popular</span>
+            </div>
+        </div>
+        <div class="p-2 w-1/4 col-span-1 flex flex-col items-center justify-center">
+            <button (click) = "sendData()" class="mx-4 px-4 py-2 rounded-xl bg-emerald-600 text-white shadow-lg border-2 border-emerald-500 shadow-emerald-500/10">Finish Ride</button>
+            <!-- <div class="p-1 flex flex-row items-center justify-end">
+                <i class="fa-solid fa-circle-check" style="color: #18cd70;"></i>
+                <p class="px-2 text-emerald-500">Completed</p>
+            </div> -->
+            <div class="pt-3 flex flex-row items-center justify-end">
+                <p class="text-emerald-500">Ride Started On:</p>
+                <p class="px-2 text-gray-200">12/29/2023</p>
+            </div>
+            <div class="flex flex-row items-center justify-end">
+                <p class="text-emerald-500">Initial Odometer Reading:</p>
+                <p class="px-2 text-gray-200">3700 Km(s)</p>
+            </div>
+        </div>
+    </div>
+</div>

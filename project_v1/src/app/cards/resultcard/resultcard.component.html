@@ -11,8 +11,8 @@
     <div class="flex-1 w-auto">
       <div class="p-4 flex flex-col justify-between">
         <div class="mb-8">
-          <div class="text-gray-200 font-bold text-xl mt-5">#Car Name Goes here</div>
-          <div class="text-emerald-500 my-1">#Type of Car Goes here</div>
+          <div class="text-emerald-500 mt-5">{{resultData.make}}</div>
+          <div class="text-gray-200 font-bold text-xl">{{resultData.model}}</div>
           <div class="flex items-center my-1">
             <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="currentColor" viewBox="0 0 22 20">
@@ -43,15 +43,13 @@
           <p class="text-gray-400 text-base my-3">
             Experience elegance and comfort on the road with our XYZ Sedan. This sleek and stylish sedan is the perfect choice for those seeking a smooth and refined driving experience. With its modern design and advanced features, the XYZ Sedan stands out as a reliable companion for any journey.
           </p>
-          <span class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Comfortable</span>
-          <span class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Economic</span>
-          <span class="bg-teal-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Popular</span>
+          <span *ngFor="let tag of resultData.tags" class="bg-teal-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">{{tag}}</span>
         </div>
       </div>
     </div>
     <div class="px-20 flex border-l-2 border-primary flex-col items-center justify-center">
       <div class="m-2 flex flex-col justify-center items-center">
-        <h1 class="text-4xl text-indigo-100">$80</h1>
+        <h1 class="text-4xl text-indigo-100">${{resultData.rate}}</h1>
         <p class="text-sm text-indigo-100">per day</p>
         <p class="text-sm text-indigo-100">(inc. taxes)</p>
       </div>

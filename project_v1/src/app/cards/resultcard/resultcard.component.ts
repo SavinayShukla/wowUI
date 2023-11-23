@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-resultcard',
@@ -9,8 +10,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: './resultcard.component.css'
 })
 export class ResultcardComponent {
+
   @Output() buttonClick = new EventEmitter();
+  @Input() resultData: any;
+
+  constructor(private sharedService: SharedService){}
+  
   onButtonClick() {
+    this.sharedService.updateResultCardData(this.resultData);
     this.buttonClick.emit("Something");
   }
 }

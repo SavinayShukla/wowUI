@@ -1,8 +1,115 @@
-<div class="bg-gray-100 h-screen py-8">
+<div class="bg-gray-100 py-8">
     <div class="container mx-auto px-4">
         <h1 class="text-3xl font-medium mb-4">Your Profile</h1>
         <h1 class="text-sm font-medium mb-4">You can edit your profile here!</h1>
-        <div class="flex flex-col md:flex-row gap-4">
+        <div class = "grid grid-cols-3 gap-8">
+            <div class="w-full col-span-1 rounded-3xl shadow shadow-2xl">
+                <div class="grid grid-cols-1 gap-8">
+                    <div class="m-10 flex flex-col items-center">
+                        <img class="rounded-full border shadow-xl w-3/4 p-4" src="assets/ava.png" alt="Profile Image">
+                        <h1 class="text-2xl font-bold pt-4">
+                            [First Name] [Last Name]
+                        </h1>
+                        <h1 class="text-md text-gray-500 pt-2">
+                            something&#64;gmail.com
+                        </h1>
+                        <h1 class="text-xs text-gray-500 pt-1">
+                            Individual
+                        </h1>
+
+                        <form class="details mb-8 mt-4">
+                            <div class="rounded-3xl mt-2">
+                                <div class="mt-2 flex flex-row">
+                                    <div class="w-full mr-5">
+                                        <h2 class="text-sm pt-4 pb-2 px-4">
+                                            Street
+                                        </h2>
+                                        <input type="text" placeholder="Update Street Here"
+                                            class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
+                                        
+                                    </div>
+                                </div>
+                                <div class="mt-2 flex flex-row">
+                                    <div class="w-full mr-5">
+                                        <h2 class="text-sm pt-1 pb-2 px-4">
+                                            City
+                                        </h2>
+                                        <input type="text" placeholder="City"
+                                            class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
+                                        
+                                    </div>
+                                    <div class="w-full mr-5">
+                                        <h2 class="text-sm pt-1 pb-2 px-4">
+                                            State
+                                        </h2>
+                                        <input type="text" placeholder="State"
+                                            class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
+                                        
+                                    </div>
+                                </div>
+                                <div class="mt-2 flex flex-row">
+                                    <div class="w-full mr-5">
+                                        <h2 class="text-sm pt-1 pb-2 px-4">
+                                            Zipcode
+                                        </h2>
+                                        <input type="text" placeholder="Zipcode"
+                                            class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
+                                        
+                                    </div>
+                                    <div class="w-full mr-5">
+                                        <h2 class="text-sm pt-1 pb-2 px-4">
+                                            Contact
+                                        </h2>
+                                        <input type="text" placeholder="Phone"
+                                            class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
+                                        
+                                    </div>
+                                </div>
+                                <hr class="mt-4">
+                                <div class="mt-2 flex flex-row">
+                                    <div class="w-full mr-5">
+                                        <h2 class="text-sm pt-1 pb-2 px-4">
+                                            License No.
+                                        </h2>
+                                        <input type="text" placeholder="License No."
+                                            class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
+                                        
+                                    </div>
+                                    <div class="w-full mr-5">
+                                        <h2 class="text-sm pt-1 pb-2 px-4">
+                                            Policy No.
+                                        </h2>
+                                        <input type="text" placeholder="Policy No."
+                                            class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
+                                        
+                                    </div>
+                                </div>
+                                <div class="mt-2 flex flex-row">
+                                    <div class="w-full mr-5">
+                                        <h2 class="text-sm pt-4 pb-2 px-4">
+                                            Employee Reg Number
+                                        </h2>
+                                        <input type="text" placeholder="Reg no."
+                                            class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
+                                        
+                                    </div>
+                                </div>
+                                <div class="mt-2 flex flex-row items-center">
+                                    <button>Update Profile</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+                        Something
+                    </div>
+                </div>
+            </div>
+            <div class="w-full col-span-2 rounded-3xl shadow shadow-2xl">
+                asdasd
+            </div>
+        </div>
+        <!-- <div class="flex flex-col md:flex-row gap-4">
             <div class="md:w-1/4">
                 <div class="bg-white rounded-lg shadow-md p-6 mb-4">
                     <div class="flex flex-col items-center">
@@ -17,7 +124,7 @@
                             Individual
                         </h1>
                     </div>
-                    <!-- <hr class="mt-8"> -->
+                    
                     <form class="details mb-8 mt-4">
                         <div class="rounded-3xl mt-2">
                             <div class="mt-2 flex flex-row">
@@ -164,6 +271,6 @@
                     <button class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">Confirm Order</button>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-payment',
@@ -8,6 +9,22 @@ import { CommonModule } from '@angular/common';
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css'
 })
-export class PaymentComponent {
+export class PaymentComponent implements OnInit {
+  selectedCarData: any;
 
+  constructor(private sharedService: SharedService) {}
+  ngOnInit() {
+    this.sharedService.searchCardData$.subscribe(data => {
+      this.selectedCarData = data;
+    });
+  }
+  
+  warning = false;
+  openModal(){
+    this.warning = true;
+  }
+
+  closeModal(){
+    this.warning = false;
+  }
 }

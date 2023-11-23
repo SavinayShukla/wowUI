@@ -80,14 +80,10 @@
     </div>
     <!-- Result Cards Column -->
     <div class="bg-primary container mt-10 mx-8 mb-10 w-2/3 flex flex-col justify-center items-center">
-      <!-- <app-resultcard (buttonClick)="handleButtonClick($event)"></app-resultcard> -->
-      <app-resultcard (buttonClick)="handleButtonClick($event)"></app-resultcard>
-      <app-resultcard></app-resultcard>
-      <app-resultcard></app-resultcard>
-      <app-resultcard></app-resultcard>
-      <app-resultcard></app-resultcard>
-      <app-resultcard></app-resultcard>
-      <app-resultcard></app-resultcard>
+      <div *ngFor="let result of searchResults" >
+        <!-- handleButtonClick catches the click from resultCard component -- IS IMPT -->
+        <app-resultcard [resultData]="result" (buttonClick)="handleButtonClick($event)"></app-resultcard>
+      </div>
     </div>
   </div>
 </div>
