@@ -32,7 +32,7 @@
                                 type="text" placeholder="Your Email" formControlName='email' />
                             <p *ngIf="submitted && regForm.get('email')?.hasError('required')"
                                 class="py-2 text-red-500 text-xs italic">Email is required.</p>
-                                <p *ngIf="submitted && regForm.get('email')?.hasError('email')"
+                            <p *ngIf="submitted && regForm.get('email')?.hasError('email')"
                                 class="py-2 text-red-500 text-xs italic">Incorrect Email.</p>
                         </div>
                         <div class="w-1/2 px-4 pb-4">
@@ -111,7 +111,7 @@
                                 Sign up
                             </span>
                             <i *ngIf="isLoading" class="px-2 fas fa-spinner fa-spin"></i>
-                            <i *ngIf="!isLoading && isRegistered"class="px-2 fa-solid fa-check fa-fade"></i>
+                            <i *ngIf="!isLoading && isRegistered" class="px-2 fa-solid fa-check fa-fade"></i>
                         </button>
                         <p class="mt-6 text-xs text-gray-600 text-center">
                             I agree to abide by Something's
