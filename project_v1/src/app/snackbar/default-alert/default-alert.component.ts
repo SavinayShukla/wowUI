@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
 
@@ -7,7 +7,7 @@ import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar'
   standalone: true,
   imports: [CommonModule],
   templateUrl: './default-alert.component.html',
-  styleUrl: './default-alert.component.css'
+  styleUrl: './default-alert.component.css',
 })
 export class DefaultAlertComponent {
   constructor(

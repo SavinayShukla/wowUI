@@ -7,7 +7,7 @@ import { Observable, map } from 'rxjs';
 })
 export class AuthService {
   private isLoggedIn = false;
-  private usersUrl = 'assets/users.json';
+  private usersUrl = 'assets/database.json';
   
   constructor(private http: HttpClient) {}
   
@@ -26,12 +26,12 @@ export class AuthService {
     return localStorage.getItem('loggedIn') === 'true';
   }
 
-  checkLogin(username: string, password: string): Observable<any> {
+  checkLogin(email: string, password: string): Observable<any> {
     return this.http.get(this.usersUrl)
       .pipe(
         map((response: any) => {
-          const users = response as any[];
-          const user = users.find(u => u.username === username && u.password === password);
+          const users = response.users as any[];
+          const user = users.find(u => u.email === email && u.password === password);
           if (user) {
             // Set the user information in the shared service
             return user;

@@ -5,7 +5,10 @@
       "model": "Camry 2022",
       "type": "Sedan",
       "carType": "Sedan",
-      "tags": ["Comfortable", "Economic"],
+      "tags": [
+        "Comfortable",
+        "Economic"
+      ],
       "rate": "80",
       "description": "The Toyota Camry 2022 is a comfortable and economic sedan with a smooth ride."
     },
@@ -14,7 +17,10 @@
       "model": "CR-V 2023",
       "type": "SUV",
       "carType": "SUV",
-      "tags": ["Spacious", "Fuel Efficient"],
+      "tags": [
+        "Spacious",
+        "Fuel Efficient"
+      ],
       "rate": "90",
       "description": "The Honda CR-V 2023 is a spacious and fuel-efficient SUV, perfect for family adventures."
     },
@@ -23,7 +29,10 @@
       "model": "5 Series 2022",
       "type": "Luxury Sedan",
       "carType": "Luxury Sedan",
-      "tags": ["Luxurious", "Performance"],
+      "tags": [
+        "Luxurious",
+        "Performance"
+      ],
       "rate": "120",
       "description": "The BMW 5 Series 2022 is a luxurious sedan with outstanding performance and elegant design."
     },
@@ -32,7 +41,10 @@
       "model": "Escape 2023",
       "type": "SUV",
       "carType": "SUV",
-      "tags": ["Versatile", "Tech-Savvy"],
+      "tags": [
+        "Versatile",
+        "Tech-Savvy"
+      ],
       "rate": "85",
       "description": "The Ford Escape 2023 is a versatile and tech-savvy SUV, combining practicality with modern features."
     },
@@ -41,7 +53,10 @@
       "model": "Malibu 2022",
       "type": "Sedan",
       "carType": "Sedan",
-      "tags": ["Affordable", "Fuel Efficient"],
+      "tags": [
+        "Affordable",
+        "Fuel Efficient"
+      ],
       "rate": "75",
       "description": "The Chevrolet Malibu 2022 is an affordable and fuel-efficient sedan, offering great value for money."
     },
@@ -50,7 +65,10 @@
       "model": "E-Class 2023",
       "type": "Luxury Sedan",
       "carType": "Luxury Sedan",
-      "tags": ["Elegant", "High-End"],
+      "tags": [
+        "Elegant",
+        "High-End"
+      ],
       "rate": "150",
       "description": "The Mercedes-Benz E-Class 2023 is an elegant and high-end luxury sedan, combining style with advanced features."
     },
@@ -59,7 +77,10 @@
       "model": "Rogue 2022",
       "type": "SUV",
       "carType": "SUV",
-      "tags": ["Reliable", "Family-Friendly"],
+      "tags": [
+        "Reliable",
+        "Family-Friendly"
+      ],
       "rate": "95",
       "description": "The Nissan Rogue 2022 is a reliable and family-friendly SUV, providing comfort and safety for your journeys."
     },
@@ -68,7 +89,10 @@
       "model": "A6 2023",
       "type": "Luxury Sedan",
       "carType": "Luxury Sedan",
-      "tags": ["Sophisticated", "Performance"],
+      "tags": [
+        "Sophisticated",
+        "Performance"
+      ],
       "rate": "130",
       "description": "The Audi A6 2023 is a sophisticated luxury sedan with outstanding performance and cutting-edge technology."
     },
@@ -77,7 +101,10 @@
       "model": "Sonata 2022",
       "type": "Sedan",
       "carType": "Sedan",
-      "tags": ["Modern", "Fuel Efficient"],
+      "tags": [
+        "Modern",
+        "Fuel Efficient"
+      ],
       "rate": "78",
       "description": "The Hyundai Sonata 2022 is a modern sedan that combines stylish design with fuel efficiency for a smooth driving experience."
     },
@@ -86,7 +113,10 @@
       "model": "RX 450h 2023",
       "type": "SUV",
       "carType": "SUV",
-      "tags": ["Hybrid", "Luxurious"],
+      "tags": [
+        "Hybrid",
+        "Luxurious"
+      ],
       "rate": "110",
       "description": "The Lexus RX 450h 2023 is a luxurious SUV with hybrid technology, offering a blend of performance and environmental friendliness."
     },
@@ -95,7 +125,10 @@
       "model": "Optima 2022",
       "type": "Sedan",
       "carType": "Sedan",
-      "tags": ["Stylish", "Economic"],
+      "tags": [
+        "Stylish",
+        "Economic"
+      ],
       "rate": "79",
       "description": "The Kia Optima 2022 is a stylish and economic sedan, combining a modern look with budget-friendly features."
     },
@@ -104,7 +137,10 @@
       "model": "XC90 2023",
       "type": "SUV",
       "carType": "SUV",
-      "tags": ["Safety", "Premium"],
+      "tags": [
+        "Safety",
+        "Premium"
+      ],
       "rate": "120",
       "description": "The Volvo XC90 2023 is an SUV that prioritizes safety and premium features, making it an ideal choice for discerning drivers."
     },
@@ -113,7 +149,10 @@
       "model": "Q50 2022",
       "type": "Luxury Sedan",
       "carType": "Luxury Sedan",
-      "tags": ["Dynamic", "Comfortable"],
+      "tags": [
+        "Dynamic",
+        "Comfortable"
+      ],
       "rate": "125",
       "description": "The Infiniti Q50 2022 is a luxury sedan that offers a dynamic driving experience combined with comfort and elegance."
     },
@@ -122,7 +161,10 @@
       "model": "CX-5 2023",
       "type": "SUV",
       "carType": "SUV",
-      "tags": ["Sporty", "Fuel Efficient"],
+      "tags": [
+        "Sporty",
+        "Fuel Efficient"
+      ],
       "rate": "88",
       "description": "The Mazda CX-5 2023 is a sporty and fuel-efficient SUV, perfect for those who enjoy an exhilarating driving experience."
     },
@@ -131,7 +173,10 @@
       "model": "Model S 2022",
       "type": "Electric Sedan",
       "carType": "Electric Sedan",
-      "tags": ["Innovative", "Environment-Friendly"],
+      "tags": [
+        "Innovative",
+        "Environment-Friendly"
+      ],
       "rate": "200",
       "description": "The Tesla Model S 2022 is an innovative and environment-friendly electric sedan, setting new standards in sustainable transportation."
     },
@@ -140,10 +185,25 @@
       "model": "Outback 2023",
       "type": "Crossover",
       "carType": "Crossover",
-      "tags": ["Durable", "All-Wheel Drive"],
+      "tags": [
+        "Durable",
+        "All-Wheel Drive"
+      ],
       "rate": "92",
       "description": "The Subaru Outback 2023 is a durable crossover with all-wheel drive capability, designed for adventurous journeys and various terrains."
     }
   ],
-  "users":[]
+  "users": [
+    {
+      "fname": "Savinay",
+      "lname": "Shukla",
+      "email": "savinayshukla@outlook.com",
+      "phone": "9178158731",
+      "password": "password",
+      "street": "544 Bay Ridge Pkwy",
+      "city": "Brooklyn",
+      "state": "New York",
+      "zipcode": "11209"
+    }
+  ]
 }
