@@ -15,6 +15,7 @@
                         <input
                             class="w-full px-8 py-4 rounded-lg font-medium bg-primary border border-gray-500 placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400"
                             type="email" placeholder="Email" formControlName='email'/>
+                            
                             <p *ngIf="submitted && loginForm.get('email')?.hasError('required')"
                                 class="py-2 text-red-500 text-xs italic">Please fill out this field.</p>
                             <p *ngIf="submitted && loginForm.get('email')?.hasError('email')"
@@ -31,6 +32,7 @@
                             </span>
                             <i *ngIf="isLoading" class="px-2 fas fa-spinner fa-spin"></i>
                         </button>
+                        
                         <p class="mt-6 text-xs text-gray-600 text-center">
                             I agree to abide by Something's
                             <a href="#" class="border-b border-gray-500 border-dotted">
