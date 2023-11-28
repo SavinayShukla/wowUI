@@ -17,16 +17,21 @@ export class ResultsComponent implements OnInit{
   // public modal = false;
   //Search Results goes here.
   searchResults: any[] = [];
+  loading: boolean = true;
 
   constructor(private authService: AuthService, private router: Router, private dataService: DataService) { }
 
   public ngOnInit(): void {
-
     //Here Subscribe to the Search Result API
+    // setTimeout(() => {
+      
+    // }, 2000);
     this.dataService.getResults().subscribe(data => {
       this.searchResults = data.cars;
+      this.loading = false;
       console.log(data.cars);
     });
+    
   }
 
 
