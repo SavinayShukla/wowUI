@@ -1,12 +1,12 @@
 <div class="bg-primary py-8">
-  <div class="container mx-auto px-4">
-    <h1 class="text-3xl font-semibold mb-4 text-gray-200">Shopping Cart</h1>
+  <div class="container mx-auto px-4 flex flex-col items-center">
+    <h1 class="text-4xl font-semibold mb-4 text-gray-200">Shopping Cart</h1>
     <div class="grid grid-cols-3 gap-8">
       <div class="col-span-2">
         <div class="bg-secondary rounded-lg shadow-md p-9 mb-4">
           <div>
             <!-- ////////////////////////////// INFO DETAILS //////////////////////////////////// -->
-            <div class="billing">
+            <div class="billing mx-2">
               <h1 class="text-3xl font-medium text-gray-200">
                 Billing Information
               </h1>
@@ -57,9 +57,9 @@
                 </div>
               </div>
             </div>
-            <hr class="">
+            <hr class="mx-2">
             <!-- ////////////////////////////// COUPON DETAILS //////////////////////////////////// -->
-            <div class="billing mt-8">
+            <div class="billing mt-8 mx-2">
               <h1 class="text-3xl font-bold text-gray-200">
                 Offers and Promotions
               </h1>
@@ -71,72 +71,86 @@
                   <h2 class="text-sm p-2 text-gray-200">
                     Coupon Code
                   </h2>
-                  <input type="text" placeholder="Code" class="w-full px-4 py-3 rounded-lg font-medium bg-primary border border-gray-500 placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400">
+                  <input type="text" placeholder="Code"
+                    class="w-full px-4 py-3 rounded-lg font-medium bg-primary border border-gray-500 
+                    placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400">
                   <button type="submit"
                     class="mt-4 shadow-2xl bg-emerald-600 text-white px-5 py-2 rounded-lg">Validate</button>
                   <i class="mx-4 fa-solid fa-circle-check fa-lg" style="color: #72da7e;"></i>
                 </div>
               </div>
             </div>
-            <hr>
+            <hr class="mx-2">
             <!-- ////////////////////////////// CARD DETAILS //////////////////////////////////// -->
-            <div class="billing mt-8">
+            <div class="billing mt-8 mx-2">
               <h1 class="text-3xl font-medium text-gray-200">
                 Payment Details
               </h1>
-              <h2 class="text-sm text-gray-200 mb-4">
-                Please revise your invoice details below
+              <h2 class="text-sm text-emerald-300 mb-4">
+                Please add/choose your payment method
               </h2>
-              <div class="grid grid-cols-4 gap-x-8 gap-y-2 mb-8">
-                <div class="col-span-2">
+              <form class="grid grid-cols-4 gap-x-8 gap-y-2 mb-8">
+                <select class="w-full px-4 py-3 rounded-lg font-medium bg-primary border border-gray-500 placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400">
+                  <option selected>Open this select menu</option>
+                  <option> ******1739</option>
+                  <option> ******1899</option>
+                </select>
+                <div class="col-start-1 col-span-2">
                   <h2 class="text-sm p-2 text-gray-200">
                     Card No
                   </h2>
-                  <input type="text" placeholder="Card/No"
-                    class="w-full p-2 rounded-lg border border-gray-200 text-gray-200 focus:outline-none">
+                  <input type="text" placeholder="Card No"
+                    class="w-full px-4 py-3 rounded-lg font-medium bg-primary border border-gray-500 
+                    placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400">
                 </div>
                 <div class="w-full col-span-2">
                   <h2 class="text-sm p-2 text-gray-200">
                     Name on Card
                   </h2>
-                  <input type="text" placeholder="Name"
-                    class="w-full p-2 rounded-lg border border-gray-200 text-gray-200 focus:outline-none">
+                  <input type="text" placeholder="Name on Card"
+                    class="w-full px-4 py-3 rounded-lg font-medium bg-primary border border-gray-500 
+                    placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400">
                 </div>
                 <div class="w-full col-start-1 col-end-2">
                   <h2 class="text-sm p-2 text-gray-200">
                     Valid To
                   </h2>
-                  <input type="month" placeholder="Email"
-                    class="w-full p-2 rounded-lg border border-gray-200 text-gray-200 focus:outline-none">
+                  <input type="month" placeholder="Name on Card"
+                    class="w-full px-4 py-3 rounded-lg font-medium bg-primary border border-gray-500 
+                    placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400">
                 </div>
                 <div class="w-full col-start-2 col-end-3">
                   <h2 class="text-sm p-2 text-gray-200">
                     CVV/CVC
                   </h2>
                   <input type="text" placeholder="CVV/CVC"
-                    class="w-full p-2 rounded-lg border border-gray-200 text-gray-200 focus:outline-none">
+                    class="w-full px-4 py-3 rounded-lg font-medium bg-primary border border-gray-500 
+                    placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400">
                 </div>
                 <div class="w-full col-start-3 col-end-4">
                   <h2 class="text-sm p-2 text-gray-200">
                     Zipcode
                   </h2>
                   <input type="text" placeholder="Zipcode"
-                    class="w-full p-2 rounded-lg border border-gray-200 text-gray-200 focus:outline-none">
+                    class="w-full px-4 py-3 rounded-lg font-medium bg-primary border border-gray-500 
+                    placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400">
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
       <div>
+        <!-- This is the right side column-->
         <div class="bg-secondary rounded-lg shadow-2xl shadow-emerald-500/30 border-4 border-emerald-700 p-6">
           <h2 class="text-lg font-semibold text-gray-200">Your Booking Summary</h2>
-          <h2 class="text-sm mb-4 text-gray-200">Please revise this before proceeding.</h2>
+          <h2 class="text-sm text-emerald-300 mb-4">Please revise your boooking details here</h2>
           <hr class="my-2">
           <h2 class="text-lg text-emerald-500">{{selectedCarData.make}}</h2>
           <h2 class="text-2xl font-semibold text-gray-200">{{selectedCarData.model}}</h2>
           <h2 class="text-sm text-gray-200 mb-2">{{selectedCarData.type}}</h2>
-          <span *ngFor="let tag of selectedCarData.tags" class="bg-teal-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">{{tag}}</span>
+          <span *ngFor="let tag of selectedCarData.tags"
+            class="bg-teal-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">{{tag}}</span>
           <!-- <span class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Economic</span>
           <span class="bg-teal-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Popular</span> -->
           <hr class="my-4">
@@ -193,12 +207,13 @@
 </div>
 
 <!-- This is a popup-->
-<div *ngIf="warning" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<div *ngIf='warning' class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
   <div class="fixed inset-0 bg-gray-950 bg-opacity-75 transition-opacity ease-in-out"></div>
 
   <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-      <div class="relative transform overflow-hidden rounded-lg bg-primary text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+      <div
+        class="backdrop-blur-xl bg-gray/100 relative transform overflow-hidden rounded-lg bg-primary bg-opacity-30 text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
         <div class="px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
           <div class="sm:flex sm:items-start">
             <div>
@@ -231,17 +246,19 @@
                 </div>
                 <div class="mt-4 flex justify-center items-center">
                   <div>
-                    <p class="text-sm text-gray-500">Are you sure you want to continue with this purchase? This action cannot be undone.</p>
+                    <p class="text-sm text-gray-500">Are you sure you want to continue with this purchase? This action
+                      cannot be undone.</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="bg-secondary px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-          <button (click) = "closeModal()" type="button"
-            class="inline-flex w-full justify-center rounded-md bg-emerald-600 px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-800 sm:ml-3 sm:w-auto">Let's Go!</button>
-          <button (click) = "closeModal()" type="button"
+        <div class="backdrop-blur-xl bg-gray/100 bg-secondary bg-opacity-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+          <button (click)="closeModal()" type="button"
+            class="inline-flex w-full justify-center rounded-md bg-emerald-600 px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-800 sm:ml-3 sm:w-auto">Let's
+            Go!</button>
+          <button (click)="closeModal()" type="button"
             class="mt-3 inline-flex w-full justify-center rounded-md bg-primary px-3 py-2 text-sm font-medium text-gray-200 shadow-sm ring-1 ring-inset ring-emerald-500 hover:bg-secondary sm:mt-0 sm:w-auto">Cancel</button>
         </div>
       </div>
