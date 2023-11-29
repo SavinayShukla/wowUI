@@ -13,7 +13,20 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-/* Mat Snack Bar */
-.customClass{
-    background: red;
+.mat-expansion-panel {
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: 0 !important;
 }
+.mat-expansion-panel-body {
+    padding: 0 !important;
+}
+
+.mat-expansion-panel-header:hover {
+    background-color: inherit !important; /* or set it to the desired background color */
+}
+
+.mat-bottom-sheet-container {
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }

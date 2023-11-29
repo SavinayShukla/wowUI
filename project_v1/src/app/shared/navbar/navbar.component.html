@@ -26,9 +26,9 @@
         class="text-sm font-semibold leading-6 text-gray-100 mr-5">Sign in <span aria-hidden="true">&rarr;</span></a>
       <a *ngIf="!authService.isAuthenticated()" href="#" [routerLink]='["/register"]'
         class="text-sm font-semibold leading-6 text-gray-100 mr-5">Sign up <span aria-hidden="true">&rarr;</span></a>
-      <a *ngIf="authService.isAuthenticated()" href="#" [routerLink]='["/dashboard"]'
-        class="text-sm font-semibold leading-6 text-gray-100 mr-5">Dashboard<span aria-hidden="true">&rarr;</span></a>
-      <a *ngIf="authService.isAuthenticated()" href="#" [routerLink]='["/profile"]'
+      <a *ngIf="authService.isAuthenticated()" href="#" [routerLink]='["/home/orders"]'
+        class="text-sm font-semibold leading-6 text-gray-100 mr-5">Your Orders<span aria-hidden="true">&rarr;</span></a>
+      <a *ngIf="authService.isAuthenticated()" href="#" [routerLink]='["/home/profile"]'
         class="text-sm font-semibold leading-6 text-gray-100 mr-5">Profile<span aria-hidden="true">&rarr;</span></a>
       <a *ngIf="authService.isAuthenticated()" (click)="authService.logout()" href="#" [routerLink]='["/logout"]'
         class="text-sm font-semibold leading-6 text-gray-100">Logout<span aria-hidden="true">&rarr;</span></a>
