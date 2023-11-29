@@ -3,57 +3,10 @@
         <div class="grid grid-cols-1 gap-8">
             <!-- PENDING ORDERS -->
             <div class="px-16 mt-8">
-                <h1 class="px-8 text-3xl text-left text-gray-200">Current Orders</h1>
-                <h2 class="px-8 mb-8 text-medium text-left text-gray-200">Your can complete your pending orders here:
+                <h1 class="px-8 text-3xl font-bold text-gray-200 uppercase tracking-wide ">Current Orders</h1>
+                <h2 class="px-8 mb-8 text-md tracking-medium font-bold text-left text-emerald-500">Your can complete your pending orders here
                 </h2>
                 <div class="mx-8 flex flex-col items-center justify-center">
-                    <!-- This is the repeating Card -->
-                    <!-- <div class="w-full border rounded-3xl flex flex-col">
-                        <div class="rounded-t-3xl bg-secondary py-3 flex flex-row">
-                            <div class="p-2 w-1/4 col-span-1 flex flex-col items-center justify-center">
-                                <h1 class="font-bold text-gray-200">Order Number</h1>
-                                <p class="text-gray-200">1231245532423</p>
-                            </div>
-                            <div class="p-2 w-2/4 col-span-1 flex flex-col items-start justify-center">
-                                <h1 class="font-bold text-gray-200">Order Date</h1>
-                                <p class="text-gray-200">12/05/2023</p>
-                            </div>
-                            <div class="p-2 w-1/4 col-span-1 flex flex-col items-center justify-center">
-                                <button
-                                    class="px-2 py-2 rounded-md bg-secondary border border-2 border-emerald-500 shadow-xl text-emerald-500">View
-                                    Invoice</button>
-                            </div>
-                        </div>
-                        <div class="py-3 flex flex-row">
-                            <div class="p-2 w-1/4 col-span-1 flex flex-col items-center justify-center">
-                                <img class="w-1/2" src="assets/car.png" />
-                            </div>
-                            <div class="p-2 w-2/4 col-span-1 flex flex-col items-start justify-center">
-                                <div class="text-emerald-500 ">Mercedes</div>
-                                <div class="text-gray-200 font-bold text-xl">SLS-300 2023</div>
-                                <div class="text-emerald-500 ">Luxury Sedan</div>
-                                <div class="py-2 flex flex-row">
-                                    <span
-                                        class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Comfortable</span>
-                                    <span
-                                        class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Economic</span>
-                                    <span
-                                        class="bg-teal-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Popular</span>
-                                </div>
-                            </div>
-                            <div class="p-2 w-1/4 col-span-1 flex flex-col items-center justify-center">
-                                <h1 class="text-3xl text-emerald-500 font-semibold">$31.00</h1>
-                                <div class="p-1 flex flex-row items-center justify-end">
-                                    <i class="fa-solid fa-circle-check" style="color: #18cd70;"></i>
-                                    <p class="px-2 text-emerald-500">Completed</p>
-                                </div>
-                                <div class="p-1 flex flex-row items-center justify-end">
-                                    <p class="text-emerald-500">Paid On:</p>
-                                    <p class="px-2 text-gray-200">12/29/2023</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                     <!-- Repeating Ends -->
                     <pend-order (dataEvent)="receiveData($event)" class="w-full"></pend-order>
 
@@ -62,9 +15,9 @@
 
             <!-- COMPLETED ORDERS -->
             <div class="px-16 my-8">
-                <h1 class="px-8 text-3xl text-left text-gray-200">Completed Orders</h1>
-                <h2 class="px-8 mb-8 text-medium text-left text-gray-200">Your can complete your pending orders here:
-                </h2>
+              <h1 class="px-8 text-3xl font-bold text-gray-200 uppercase tracking-wide">Completed Orders</h1>
+              <h2 class="px-8 mb-8 text-md tracking-medium font-bold text-left text-emerald-500">Your can view your completed orders here
+              </h2>
                 <div class="mx-8 flex flex-col items-center justify-center">
                     <!-- This is the repeating Card -->
                     <!-- <div class="mb-4 w-full flex flex-col shadow-xl">
@@ -120,7 +73,38 @@
                     <comp-order class="w-full"></comp-order>
                     <comp-order class="w-full"></comp-order>
                     <comp-order class="w-full"></comp-order>
+                    <mat-accordion class="w-full">
+                      <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header class="w-full">
+                        <mat-panel-title>
+                          <div class="flex flex-col items-center justify-center">
+                            <h1 class="font-bold text-gray-200">Order Number</h1>
+                            <p class="text-gray-200">1231245532423</p>
+                        </div>
+                        </mat-panel-title>
+                      <mat-panel-description>
+                        
+                      <div class="p-2 w-2/4 col-span-1 flex flex-col items-start justify-center">
+                          <h1 class="font-bold text-gray-200">Order Date</h1>
+                          <p class="text-gray-200">12/05/2023</p>
+                      </div>
+                      </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <comp-order class="w-full"></comp-order>
+                      </mat-expansion-panel>
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            Self aware panel
+                          </mat-panel-title>
+                          
+                        </mat-expansion-panel-header>
+                        <p>I'm visible because I am open</p>
+                      </mat-expansion-panel>
+                    </mat-accordion>
+                    
                 </div>
+                
             </div>
         </div>
     </div>
