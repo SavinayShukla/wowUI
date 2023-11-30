@@ -20,6 +20,7 @@ body {
 }
 .mat-expansion-panel-body {
     padding: 0 !important;
+    margin: 0 !important;
 }
 
 .mat-expansion-panel-header:hover {
@@ -29,4 +30,8 @@ body {
 .mat-bottom-sheet-container {
     padding: 0 !important;
     border-radius: 0 !important;
+  }
+
+  .mat-accordion .mat-expansion-panel{
+    margin-bottom: 15px;
   }

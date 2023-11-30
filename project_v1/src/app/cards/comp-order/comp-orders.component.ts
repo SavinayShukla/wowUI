@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'comp-order',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatExpansionModule],
   templateUrl: './comp-orders.component.html',
   styleUrl: './comp-orders.component.css'
 })

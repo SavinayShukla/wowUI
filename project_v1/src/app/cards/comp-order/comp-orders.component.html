@@ -1,46 +1,37 @@
-<div class="mb-4 w-full flex flex-col shadow-xl">
-    <div class="bg-secondary py-3 flex flex-row">
-        <div class="p-2 w-1/4 col-span-1 flex flex-col items-center justify-center">
-            <h1 class="font-bold text-gray-200">Order Number</h1>
-            <p class="text-gray-200">1231245532423</p>
-        </div>
-        <div class="p-2 w-2/4 col-span-1 flex flex-col items-start justify-center">
-            <h1 class="font-bold text-gray-200">Order Date</h1>
-            <p class="text-gray-200">12/05/2023</p>
-        </div>
-        <div class="p-2 w-1/4 col-span-1 flex flex-col items-center justify-center">
-            <button (click)="openCard()" class="px-2 py-2 rounded-md bg-secondary border border-2 border-secondary shadow-xl text-secondary">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path id="path4" d="M10 4.1665V15.8332" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M4.16602 10H15.8327" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            </button>
-        </div>
-    </div>
-    <div [ngClass]="{'hidden': !cardToggle}" class="py-3 flex flex-row">
-        <div class="p-2 w-1/4 col-span-1 flex flex-col items-center justify-center">
-            <div class="text-emerald-500 ">Mercedes</div>
+<mat-expansion-panel hideToggle class="">
+    <mat-expansion-panel-header class="w-full p-2 bg-secondary">
+        <mat-panel-title class="flex flex-row items-center justify-center">
+            <h1 class="font-bold tracking-wider uppercase text-sm text-gray-400">Order # </h1>
+            <p class="px-2 text-sm font-bold tracking-wide text-gray-200">1231245532423</p>
+        </mat-panel-title>
+        <mat-panel-description class="flex flex-row">
+            <h1 class="font-bold tracking-wider uppercase text-sm text-emerald-400">Completed On: </h1>
+            <p class="px-2 text-sm font-bold tracking-wide text-gray-200">10/12/2022</p>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="grid grid-cols-6 w-full">
+        <div class="p-2 col-span-2 flex flex-col items-center justify-center">
+            <div class="text-emerald-500 uppercase text-sm tracking-wider font-bold">Mercedes</div>
             <div class="text-gray-200 font-bold text-xl">SLS-300 2023</div>
-            <div class="text-emerald-500 ">Luxury Sedan</div>
+            <div class="text-emerald-600 text-sm">Luxury Sedan</div>
             <div class="py-2 flex flex-row">
                 <span
                     class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Comfortable</span>
                 <span
                     class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Economic</span>
-                <span
-                    class="bg-teal-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Popular</span>
+                <span class="bg-teal-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Popular</span>
             </div>
         </div>
-        <div class="p-2 w-2/4 col-span-1 flex flex-col items-start justify-center">
-            <div class="text-gray-200">Payment Done Through:</div>
-            <div class="text-gray-200 text-md">**********1799</div>
-            <div class="text-emerald-500 ">Coupon Applied</div>
+        <div class="p-2 col-span-2 flex flex-col items-start justify-center">
+            <div class="text-gray-400 text-xs font-bold uppercase tracking-wider">Payment Method</div>
+            <div class="text-gray-200 text-sm">**********1799</div>
+            <div class="text-emerald-500 text-sm">Coupon Applied</div>
         </div>
-        <div class="p-2 w-1/4 col-span-1 flex flex-col items-center justify-center">
-            <h1 class="text-3xl text-emerald-500 font-semibold">$31.00</h1>
+        <div class="p-2 col-span-2 flex flex-col items-center justify-center">
+            <h1 class="text-2xl text-emerald-500 font-semibold">$31.00</h1>
             <div class="p-1 flex flex-row items-center justify-end">
                 <i class="fa-solid fa-circle-check" style="color: #18cd70;"></i>
-                <p class="px-2 text-emerald-500">Completed</p>
+                <p class="px-2 text-emerald-400 text-sm font-bold uppercase tracking-wider">Completed</p>
             </div>
             <div class="p-1 flex flex-row items-center justify-end">
                 <p class="text-emerald-500">Paid On:</p>
@@ -48,4 +39,4 @@
             </div>
         </div>
     </div>
-</div>
+</mat-expansion-panel>

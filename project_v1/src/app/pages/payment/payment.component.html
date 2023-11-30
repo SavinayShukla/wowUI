@@ -205,7 +205,7 @@
             <span class="font-semibold">Estimated Total</span>
             <span class="font-semibold">$21.98</span>
           </div>
-          <button (click)="openModal()"
+          <button (click)="openConfirmOrder()"
             class="bg-emerald-500 text-white py-2 px-4 rounded-lg mt-4 w-full hover:bg-emerald-600">Confirm
             Order</button>
         </div>
@@ -215,7 +215,7 @@
 </div>
 
 <!-- This is a popup-->
-<div *ngIf='warning' class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<!-- <div *ngIf='warning' class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
   <div class="fixed inset-0 bg-gray-950 bg-opacity-75 transition-opacity ease-in-out"></div>
 
   <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -272,4 +272,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
