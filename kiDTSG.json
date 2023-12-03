@@ -1,0 +1,484 @@
+{
+	"info": {
+		"_postman_id": "39765eb4-1cb1-40a5-87bd-d0783b148fd3",
+		"name": "Wow Rental",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6532029",
+		"_collection_link": "https://galactic-equinox-291082.postman.co/workspace/My-Workspace~a0facc77-437e-49b3-82e2-18878f162e94/collection/6532029-39765eb4-1cb1-40a5-87bd-d0783b148fd3?action=share&source=collection_link&creator=6532029"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"rs8031@nyu.edu\",\n    \"phone\": \"7325229576\",\n    \"first_name\": \"Rohit\",\n    \"last_name\": \"Shrothrium Srinath\",\n    \"password\": \"password\",\n    \"address_street\": \"544 Bayridge Pkwy\",\n    \"address_city\": \"Brooklyn\",\n    \"address_state\": \"NY\",\n    \"address_zipcode\": \"11209\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/user/signup/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"signup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"rs8031@nyu.edu\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/user/login/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAwNTAzMjAwLCJpYXQiOjE3MDA1MDI5MDAsImp0aSI6IjY5ZGIzMzEyNDllODRmMGJhODNmY2ZkNDlhMjYyNDY0IiwidXNlcl9pZCI6Mn0.Mu2M_75mTFHHtcjawk00-71lwxg9Cap1g6bDH4I0zxM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcwMDU4OTMwMCwiaWF0IjoxNzAwNTAyOTAwLCJqdGkiOiI5ZDFhZDU4NTZjODM0ZTMzYmRkMTIzMjU5MjA2MjNlYyIsInVzZXJfaWQiOjJ9.abjCEs3ksu87yIYtLzpPjrOqJsgdJyUZ42cJckTRXCI\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/user/logout/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"logout",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxMDIwNTAwLCJpYXQiOjE3MDA3MjA1MDAsImp0aSI6ImVmYTBiZmFjODk4YTRlOGQ5YmFmZTEwZDJmMWNjYWJmIiwidXNlcl9pZCI6Mn0.PKMJOlRHeIjDJm75s0zu4WQulc71L5FxjPayJaAxucA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/user/profile/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAwNTQ3MzkyLCJpYXQiOjE3MDA1NDcwOTIsImp0aSI6IjFmMTMyZjk1NTg2ZDRlYmJiNTc1YTI1NDRiZGQ4OWQ4IiwidXNlcl9pZCI6Mn0.eRjtXZCYHLz_dKCN7UeTDXGvyzVpIyr4aOCqcrEUqrs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"rs8031@nyu.edu\",\n    \"phone\": \"7325229576\",\n    \"first_name\": \"Rohit\",\n    \"last_name\": \"Shrothrium Srinath\",\n    \"address_street\": \"544 Bayridge Pkwy\",\n    \"address_city\": \"Brooklyn\",\n    \"address_state\": \"NY\",\n    \"address_zipcode\": \"11209\",\n    \"user_type\": \"I\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/user/profile/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAwNTQ3ODUyLCJpYXQiOjE3MDA1NDc1NTIsImp0aSI6IjlhMTg0YmJkZDZlYzQ4ZDFhMGFjYWY5ZmI0M2M2YmE5IiwidXNlcl9pZCI6Mn0.qIRGewTDKYF7O_icRuK3ncc-_Gt8Uig6r-m9yPKO2Ww",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"old_password\": \"password\",\n    \"new_password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/user/password/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"password",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Metadata API",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAwNjg0MjExLCJpYXQiOjE3MDA2ODM5MTEsImp0aSI6IjFmMjYzNWMyMGU0MjQ3ZTI4M2JhY2QwNDY4N2E3ZTc2IiwidXNlcl9pZCI6Mn0.3kGLKm7AVhDSA7AxcLnjGhAKu0x6mccFVJQ1JAkVNXI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/swimlane/metadata/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"swimlane",
+						"metadata",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Individual Customer C/U",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAwNjg0MjExLCJpYXQiOjE3MDA2ODM5MTEsImp0aSI6IjFmMjYzNWMyMGU0MjQ3ZTI4M2JhY2QwNDY4N2E3ZTc2IiwidXNlcl9pZCI6Mn0.3kGLKm7AVhDSA7AxcLnjGhAKu0x6mccFVJQ1JAkVNXI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dl_number\": \"123456\",\n    \"insurance_company\": \"Metlife\",\n    \"insurance_policy_no\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/swimlane/customer/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"swimlane",
+						"customer",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Corporate Customer C/ U",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAwNjg0MjExLCJpYXQiOjE3MDA2ODM5MTEsImp0aSI6IjFmMjYzNWMyMGU0MjQ3ZTI4M2JhY2QwNDY4N2E3ZTc2IiwidXNlcl9pZCI6Mn0.3kGLKm7AVhDSA7AxcLnjGhAKu0x6mccFVJQ1JAkVNXI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"emp_id\": \"sahflajsdljflrs8031adfasfsd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/swimlane/customer/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"swimlane",
+						"customer",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Payments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAwNjg0NTg4LCJpYXQiOjE3MDA2ODQyODgsImp0aSI6ImE4YjZjODE3NjVmNDQwZDg5NzE2MjlkMWU5ZjQ5NTczIiwidXNlcl9pZCI6Mn0.UXmJ13x28C1FrcoBO82kFYZgAC-fn0-9JoolLAcTaLY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/swimlane/payment/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"swimlane",
+						"payment",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Payment Method",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAwNjg0NTg4LCJpYXQiOjE3MDA2ODQyODgsImp0aSI6ImE4YjZjODE3NjVmNDQwZDg5NzE2MjlkMWU5ZjQ5NTczIiwidXNlcl9pZCI6Mn0.UXmJ13x28C1FrcoBO82kFYZgAC-fn0-9JoolLAcTaLY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"payment_method\": \"C\",\n    \"card_number\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/swimlane/payment/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"swimlane",
+						"payment",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Payment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAwNjg0NTg4LCJpYXQiOjE3MDA2ODQyODgsImp0aSI6ImE4YjZjODE3NjVmNDQwZDg5NzE2MjlkMWU5ZjQ5NTczIiwidXNlcl9pZCI6Mn0.UXmJ13x28C1FrcoBO82kFYZgAC-fn0-9JoolLAcTaLY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"payment_id\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/swimlane/payment/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"swimlane",
+						"payment",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Coupons",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxMDU5MTMwLCJpYXQiOjE3MDA3NTkxMzAsImp0aSI6IjExNmJiNzNhNDE2YTQ4ODFhYzk3YmViZGMxMzdjZjBiIiwidXNlcl9pZCI6Mn0.xVnz7KoQvOc4sNPKRt3A1jmn3GurvBEXC-ANUQ9qur0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/swimlane/coupon/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"swimlane",
+						"coupon",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Office",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/vehicle/office/?address_city=",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"vehicle",
+						"office",
+						""
+					],
+					"query": [
+						{
+							"key": "address_city",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

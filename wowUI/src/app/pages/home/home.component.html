@@ -1,0 +1,64 @@
+<div class="flex flex-col min-h-screen">
+    <div class="flex flex-col justify-center items-center bg-primary text-white pt-32 pb-8">
+        <section class="py-16">
+            <div class="container mx-auto text-center">
+                <h1 class="text-4xl lg:text-6xl font-bold mb-4">Explore Your Ideal Ride</h1>
+                <p class="text-lg lg:text-xl text-gray-300 mb-8">Discover and reserve the finest cars for your next
+                    journey!</p>
+                <div class="flex flex-col justify-center items-center max-w-full mx-auto">
+                    <form [formGroup]="searchForm" (submit)="onSubmit()" class="flex flex-row sm:flex-row">
+                        
+                        <!--PICKUP-->
+                        <div class="w-full mx-2 mb-4 sm:mb-0">
+                            <input type="text" [(ngModel)]="location" (input)="onInput($event)"
+                                placeholder="Pickup Location" formControlName='pickupLoc'
+                                class="w-full p-4 tracking-wider font-bold placeholder:uppercase text-sm rounded-md bg-secondary text-gray-300 focus:outline-none">
+                            <div *ngIf="predictions.length" class="mx-2 p-4 w-auto border z-50 fixed">
+                                <ul>
+                                    <li *ngFor="let prediction of predictions" (click)="selectPrediction(prediction)">
+                                        {{ prediction.description }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!--DROPOFF-->
+                        <div class="w-full mx-2 mb-4 sm:mb-0">
+                            <input type="text" (input)="onInput($event)" formControlName='dropoffLoc'
+                                placeholder="Dropoff Location"
+                                class="w-full p-4 tracking-wider font-bold disabled:opacity-30 placeholder:uppercase text-sm rounded-md bg-secondary text-gray-300 focus:outline-none">
+                            <mat-checkbox formControlName="intercity"><span
+                                    class="text-xs font-bold uppercase tracking-wider text-gray-500 hidden sm:inline">Intercity?</span></mat-checkbox>
+                        </div>
+
+                        <!--PICKDATE-->
+                        <div class="w-3/4 mx-2 mb-4 sm:mb-0">
+                            <div class="flex flex-row bg-secondary rounded-md bg-secondary text-gray-300">
+                                <input matInput placeholder="Pickup Date" formControlName='pickupDate' [matDatepicker]="pickupPicker" 
+                                    class="w-full ml-1 p-4 bg-secondary font-bold placeholder:uppercase text-sm text-gray-300 focus:outline-none">
+                                <mat-datepicker-toggle matIconSuffix [for]="pickupPicker"></mat-datepicker-toggle>
+                                <mat-datepicker #pickupPicker></mat-datepicker>
+                                </div>
+                        </div>
+                        <!-- <div class="flex-1 mx-2 mb-4 sm:mb-0">
+                            <input type="date" formControlName='dropoffDate'
+                                class="w-full p-3 mb-2 rounded-md bg-secondary text-gray-300 focus:outline-none">
+                            <span class="text-xs font-bold uppercase tracking-wider text-gray-500 hidden sm:inline">Droppoff Date</span>
+                        </div> -->
+                        <div class="w-3/4 mx-2 mb-4 sm:mb-0">
+                            <div class="flex flex-row bg-secondary rounded-md bg-secondary text-gray-300">
+                                <input matInput placeholder="Pickup Date" formControlName='pickupDate' [matDatepicker]="dropoffPicker" 
+                                    class="w-full ml-1 p-4 tracking-wider bg-secondary font-bold placeholder:uppercase text-sm text-gray-300 focus:outline-none">
+                                <mat-datepicker-toggle matIconSuffix [for]="dropoffPicker"></mat-datepicker-toggle>
+                                <mat-datepicker #dropoffPicker></mat-datepicker>
+                                </div>
+                        </div>
+                        <div class="mx-2 mb-4 sm:mb-0">
+                            <button class="bg-emerald-700 text-gray-100 p-3 rounded-lg hover:shadow-lg hover:shadow-emerald-600/10 hover:bg-emerald-500 transition-all duration-300 ease-in-out">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <router-outlet></router-outlet>

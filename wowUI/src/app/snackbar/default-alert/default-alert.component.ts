@@ -8,6 +8,7 @@ import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar'
   imports: [CommonModule],
   templateUrl: './default-alert.component.html',
   styleUrl: './default-alert.component.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class DefaultAlertComponent {
   constructor(

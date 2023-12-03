@@ -58,7 +58,8 @@ export class LoginComponent {
   openSnackBar() {
     this._snackBar.openFromComponent(DefaultAlertComponent, {
       data: this.error,
-      duration: 3000,
+      duration: 30000,
+      panelClass: ['success-snackbar']
     });
   }
 }
