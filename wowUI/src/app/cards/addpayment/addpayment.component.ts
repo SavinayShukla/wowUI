@@ -45,11 +45,19 @@ export class AddpaymentComponent {
           // this._bottomSheetRef.dismiss();
           // this.success = true;
           this.paymentService.fetchPayments();
-          this.popup.openSnackBar("Payment Added Successfull");
+          this.popup.openSnackBar({
+            message : "Added a payment method successfully!",
+            status : 'success',
+            duration : 3000
+          });
         },
         (error) => {
           this.loading = false;
-          this.popup.openSnackBar("Error in  Creating Payment!");
+          this.popup.openSnackBar({
+            message : "Error in adding a payment method!",
+            status : 'error',
+            duration : 3000
+          });
         }
       );
     }

@@ -15,9 +15,6 @@ export class UserService {
   private getProfileURI = `${environment.host}/user/profile/`;
   private userDetailsURI = `${environment.host}/swimlane/customer/`;
   private updatePasswordURI = `${environment.host}/user/password/`;
-  private paymentURI = `${environment.host}/swimlane/payment/`;
-  private deletePaymentURI = `${environment.host}/swimlane/payment/?payment_id=`;
-  
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -71,43 +68,6 @@ export class UserService {
     }
     return of(null);
   }
-
-  // getPayments(): Observable <any>{
-  //   const token = this.authService.getAccessToken();
-  //   if(token){
-  //     const headers = new HttpHeaders({
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${token}`
-  //     });
-  //     return this.http.get(this.paymentURI, {headers});
-  //   }
-  //   return of(null);
-  // }
-
-  // deletePayment(id: any) : Observable<any>{
-  //   const token = this.authService.getAccessToken();
-  //   if(token){
-  //     const headers = new HttpHeaders({
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${token}`,
-        
-  //     });
-  //     return this.http.delete(this.deletePaymentURI + id, {headers});
-  //   }
-  //   return of(null);
-  // }
-
-  // addPayment(payment: any): Observable<any> {
-  //   const token = this.authService.getAccessToken();
-  //   if(token){
-  //     const headers = new HttpHeaders({
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${token}`
-  //     });
-  //     return this.http.post(this.paymentURI, payment, {headers});
-  //   }
-  //   return of(null);
-  // }
 
   getDetails(): Observable <any>{
     const token = this.authService.getAccessToken();

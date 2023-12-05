@@ -6,11 +6,13 @@ import { Router, RouterModule } from '@angular/router';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { UserService } from '../../services/user.service';
 import { DefaultAlertComponent } from '../../snackbar/default-alert/default-alert.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { PopupService } from '../../services/alerts/popup.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, MatProgressBarModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -21,7 +23,7 @@ export class RegisterComponent {
   isRegistered = false;
   error : string = "";
 
-  constructor(private router: Router, private fb: FormBuilder, private _snackBar: MatSnackBar, private userService: UserService) { 
+  constructor(private router: Router, private fb: FormBuilder, private alertService : PopupService, private userService: UserService) { 
     this.regForm = this.fb.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
@@ -46,24 +48,25 @@ export class RegisterComponent {
       this.userService.registerUser(signUpData).subscribe(
         (response) => {
           this.isLoading = false;
-          this.openSnackBar(response.message);
+          this.alertService.openSnackBar({
+            message : response.message,
+            status : 'success',
+            duration : 5000
+          });
           this.router.navigate(['/login']);
           // Optionally, you can navigate to another page or perform additional actions here
         },
         (error) => {
           console.log(error);
           this.error = "It is not working!";
-          this.openSnackBar(error.error.message);
+          this.alertService.openSnackBar({
+            message : error.error.message,
+            status : 'error',
+            duration : 3000
+          });
           this.isLoading = false;
         }
       );
     }
-  }
-
-  openSnackBar(message:any) {
-    this._snackBar.openFromComponent(DefaultAlertComponent, {
-      data: message,
-      duration: 3000
-    });
   }
 }

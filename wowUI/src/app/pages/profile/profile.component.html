@@ -1,7 +1,7 @@
 <div class="bg-primary py-8">
     <div class="container mx-auto px-4">
         <h1 class="text-4xl font-bold text-gray-200">Your Profile</h1>
-        <h1 class="text-sm font-medium text-emerald-500 mb-4 mt-2">You can edit your profile here!</h1>
+        <h1 class="text-sm font-bold tracking-wider uppercase text-emerald-500 mb-4 mt-2">You can edit your profile here!</h1>
         <div class="grid grid-cols-3 gap-8">
             <!-- ################## PROFILE CARD ####################-->
             <div class="bg-secondary sticky w-full col-span-1 rounded-lg shadow shadow-2xl">
@@ -12,13 +12,13 @@
                         <h1 class="text-3xl text-gray-300 uppercase font-bold pt-4">
                             {{staticInfo.first_name}} {{staticInfo.last_name}}
                         </h1>
-                        <h1 class="text-lg text-emerald-500 pt-2">
+                        <h1 class="text-lg italic text-emerald-500">
                             {{staticInfo.email}}
                         </h1>
-                        <h1 *ngIf = 'staticInfo.user_type == "I"' class="text-md text-gray-200 pt-1">
+                        <h1 *ngIf = 'staticInfo.user_type == "I"' class="text-xs uppercase font-bold tracking-widest text-gray-400 pt-1">
                             Individual
                         </h1>
-                        <h1 *ngIf = 'staticInfo.user_type == "C"' class="text-md text-gray-200 pt-1">
+                        <h1 *ngIf = 'staticInfo.user_type == "C"' class="text-xs uppercase font-bold tracking-widest text-gray-400 pt-1">
                             Corporate
                         </h1>
                         <div class="grid grid-cols-1 gap-1">
@@ -210,33 +210,6 @@
                                             duration-300 ease-in-out">Add Card</button>
                                         </div>
                                     </div>
-                                    
-                                    <!--#### REPEATING CARD DETAILS ########-->
-                                    <!-- <div class="grid grid-cols-6 gap-x-4 gap-y-4">
-                                        <div class="col-span-2">
-                                            <h1 class="text-emerald-500 uppercase text-sm font-bold">Card Number</h1>
-                                            <input
-                                                class="w-full text-sm text-gray-300 bg-secondary placeholder:font-bold"
-                                                placeholder="****************1985">
-                                        </div>
-                                        <div class="col-span-2">
-                                            <h1 class="text-emerald-500 uppercase text-sm font-bold">Name on Card</h1>
-                                            <input class="text-sm text-gray-300 bg-secondary placeholder:font-bold"
-                                                placeholder="Rohit Srinath Shrothrium">
-                                        </div>
-                                        <div class="">
-                                            <h1 class="text-emerald-500 uppercase text-sm font-bold">Exp Date</h1>
-                                            <input class="text-sm text-gray-300 bg-secondary placeholder:font-bold"
-                                                placeholder="09/2022">
-                                        </div>
-                                        <div class="w-1/6 h-full flex flex-col items-center justify-center">
-                                            <div>
-                                                <button
-                                                    class="transition-all rounded-full hover:bg-red-400 hover:bg-opacity-20 px-2 py-1"><i
-                                                        class="fa-solid fa-trash" style="color: #cf7277;"></i></button>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                         </mat-expansion-panel>

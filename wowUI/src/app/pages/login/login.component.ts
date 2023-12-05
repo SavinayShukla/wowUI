@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DefaultAlertComponent } from '../../snackbar/default-alert/default-alert.component';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
+import { PopupService } from '../../services/alerts/popup.service';
 
 @Component({
   selector: 'app-login',
@@ -22,8 +23,7 @@ export class LoginComponent {
   submitted = false;
   error:string = "";
 
-  constructor(private userService: UserService, private authService: AuthService,
-              private _snackBar: MatSnackBar, 
+  constructor(private userService: UserService, private popup : PopupService,
               private router: Router, private fb: FormBuilder){
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -44,22 +44,23 @@ export class LoginComponent {
             // this.authService.login();
             this.isLoading = false;
             this.router.navigate(['/home']);
-            this.openSnackBar("Login Successful!");
+            this.popup.openSnackBar({
+              message : "Login Successful!",
+              status : 'success',
+              duration : 3000
+            });
             // Optionally, you can navigate to another page or perform additional actions here
           },
           (error) => {
-            this.openSnackBar(error);
+            this.popup.openSnackBar({
+              message : "Unauthorized!",
+              status : 'error',
+              duration : 3000
+            });
             this.isLoading = false;
           }
         );
       }
     }
-  }
-  openSnackBar(data:any) {
-    this._snackBar.openFromComponent(DefaultAlertComponent, {
-      data: data,
-      duration: 5000,
-      // panelClass: ['success-snackbar']
-    });
   }
 }

@@ -12,8 +12,7 @@ export class PopupService {
   openSnackBar(data:any) {
     this._snackBar.openFromComponent(DefaultAlertComponent, {
       data: data,
-      duration: 5000,
-      // panelClass: ['success-snackbar']
+      duration: data.duration,
     });
   }
 }

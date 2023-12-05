@@ -1,17 +1,43 @@
-<div class="flex flex-row bg-secondary p-4 rounded-sm w-full">
+<div *ngIf = 'data.status === "error"' class="flex flex-row bg-secondary p-4 rounded-sm w-full">
     <div class="mx-4 flex flex-col items-center justify-center rounded-full">
         <div>
-            <svg class="h-8 w-8 text-red-500 font-bold" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-            </svg>
+            <i class="fa-regular fa-circle-xmark fa-shake fa-2xl" style="color: #ef4444;"></i>
         </div>
     </div>
     <div class="mx-1 flex flex-col">
-        <h3 class="text-sm font-semibold text-red-400">Whoopsie!</h3>
+        <h3 class="text-md font-bold text-red-400">Whoopsie!</h3>
         <div class="">
-            <h3 class="text-xs">{{data}}</h3>
+            <h3 class="text-sm text-red-400">{{data.message}}</h3>
+        </div>
+    </div>
+</div>
+
+<!-- SUCCESS -->
+<div *ngIf = 'data.status === "success"' class="flex flex-row bg-secondary p-4 w-full">
+    <div class="mx-4 flex flex-col items-center justify-center rounded-full">
+        <div>
+            <i class="fa-solid fa-check fa-fade fa-2xl" style="color: #3cb480;"></i>
+        </div>
+    </div>
+    <div class="mx-1 flex flex-col">
+        <h3 class="text-md font-bold text-emerald-500">Success!</h3>
+        <div class="">
+            <h3 class="text-sm text-gray-300">{{data.message}}</h3>
+        </div>
+    </div>
+</div>
+
+<!-- WARNING -->
+<div *ngIf = 'data.status === "alert"' class="flex flex-row bg-secondary p-4 w-full">
+    <div class="mx-4 flex flex-col items-center justify-center rounded-full">
+        <div>
+            <i class="fa-solid fa-circle-exclamation fa-beat-fade fa-2xl" style="color: #f59e0b;"></i>
+        </div>
+    </div>
+    <div class="mx-1 flex flex-col">
+        <h3 class="text-md font-bold text-amber-500">Attention!</h3>
+        <div class="">
+            <h3 class="text-sm text-amber-600">{{data.message}}</h3>
         </div>
     </div>
 </div>

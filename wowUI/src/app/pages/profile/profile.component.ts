@@ -99,10 +99,18 @@ export class ProfileComponent implements OnInit {
       basicDataUpdated['user_type'] = this.staticInfo.user_type;
       this.userService.updateBasicInfo(basicDataUpdated).subscribe(
         (response) => {
-          this.popup.openSnackBar("Updated Successful!");
+          this.popup.openSnackBar({
+            message : "Basic Info Updated Successfully!",
+            status : 'success',
+            duration : 3000
+          });
         },
         (error) => {
-          this.popup.openSnackBar("Error in  Updating Profile!");
+          this.popup.openSnackBar({
+            message : "Error while updating basic info!",
+            status : 'error',
+            duration : 3000
+          });
         }
       );
     }
@@ -118,10 +126,18 @@ export class ProfileComponent implements OnInit {
             //Update Observable.
             this.metadataService.updateMetaData(metadata);
           });
-          this.popup.openSnackBar("Updated Personal Info Successful!");
+          this.popup.openSnackBar({
+            message : "Personal Info Updated Successfully!",
+            status : 'success',
+            duration : 3000
+          });
         },
         (error) => {
-          this.popup.openSnackBar("Error in  Updating Profile!");
+          this.popup.openSnackBar({
+            message : "Error while updating personal info!",
+            status : 'error',
+            duration : 3000
+          });
         }
       );
     }
@@ -137,10 +153,18 @@ export class ProfileComponent implements OnInit {
             //Update Observable.
             this.metadataService.updateMetaData(metadata);
           });
-          this.popup.openSnackBar("Updated Corporation Successful!");
+          this.popup.openSnackBar({
+            message : "Corporate Info Updated Successfully!",
+            status : 'success',
+            duration : 3000
+          });
         },
         (error) => {
-          this.popup.openSnackBar("Error in  Updating Profile!");
+          this.popup.openSnackBar({
+            message : "Error while updating corporate info!",
+            status : 'error',
+            duration : 3000
+          });
         }
       );
     }
@@ -158,10 +182,18 @@ export class ProfileComponent implements OnInit {
               //Update Observable.
               this.metadataService.updateMetaData(metadata);
             });
-            this.popup.openSnackBar("Deleted Payment Successful!");
+            this.popup.openSnackBar({
+              message : "Your card was deleted successfully!",
+              status : 'success',
+              duration : 3000
+            });
           },
           (error) => {
-            this.popup.openSnackBar("Error in Deleting Payment!");
+            this.popup.openSnackBar({
+              message : "Error in deleting payment!",
+              status : 'error',
+              duration : 3000
+            });
           }
         );
       }
@@ -175,7 +207,5 @@ export class ProfileComponent implements OnInit {
   openAddCard(): void {
     this._bottomSheet.open(AddpaymentComponent);
   }
-
-
-
+  
 }

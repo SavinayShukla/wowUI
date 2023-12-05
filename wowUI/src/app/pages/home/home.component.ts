@@ -92,7 +92,11 @@ export class HomeComponent implements OnInit {
   handleProfileRoute(metadata: any){
     if(!metadata.is_profile_complete){
       this.router.navigate(['/home/profile']);
-      this.popup.openSnackBar("Please complete your profile");
+      this.popup.openSnackBar({
+        message : "Please update your profile before proceeding!",
+        status : 'alert',
+        duration : 5000
+      });
     }
   }
 }

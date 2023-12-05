@@ -39,12 +39,19 @@ export class UpdatePasswordComponent {
           this.loading = false;
           // this._bottomSheetRef.dismiss();
           this.success = true;
-          this.popup.openSnackBar("Password Update Successfull");
+          this.popup.openSnackBar({
+            message : "Password updated successfully!",
+            status : 'success',
+            duration : 3000
+          });
         },
         (error) => {
           this.loading = false;
-          console.log("Error");
-          this.popup.openSnackBar("Error in  Updating Profile!");
+          this.popup.openSnackBar({
+            message : "Error in updating password!",
+            status : 'error',
+            duration : 3000
+          });
         }
       );
     }
