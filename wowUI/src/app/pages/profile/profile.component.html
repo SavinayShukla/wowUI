@@ -10,29 +10,30 @@
                         <img class="bg-gray-200 rounded-full border shadow-xl w-3/4 p-4" src="assets/ava.png"
                             alt="Profile Image">
                         <h1 class="text-3xl text-gray-300 uppercase font-bold pt-4">
-                            Savinay Shukla
+                            {{staticInfo.first_name}} {{staticInfo.last_name}}
                         </h1>
                         <h1 class="text-lg text-emerald-500 pt-2">
-                            something&#64;gmail.com
+                            {{staticInfo.email}}
                         </h1>
-                        <h1 class="text-md text-gray-200 pt-1">
+                        <h1 *ngIf = 'staticInfo.user_type == "I"' class="text-md text-gray-200 pt-1">
                             Individual
                         </h1>
+                        <h1 *ngIf = 'staticInfo.user_type == "C"' class="text-md text-gray-200 pt-1">
+                            Corporate
+                        </h1>
                         <div class="grid grid-cols-1 gap-1">
-                            <button (click) = 'openUpdatePassword()'
-                            class="mt-5 px-3 py-2 bg-emerald-700 tracking-wider text-xs uppercase font-bold text-gray-100 w-full rounded-md hover:shadow-lg 
+                            <button (click)='openUpdatePassword()' class="mt-5 px-3 py-2 bg-emerald-700 tracking-wider text-xs uppercase font-bold text-gray-100 w-full rounded-md hover:shadow-lg 
                                     hover:shadow-emerald-600/10 hover:bg-emerald-500 transition-all 
                                     duration-300 ease-in-out">
                                 Update Password
-                        </button>
-                        <button (click) = 'openAddCard()'
-                            class="mt-5 px-3 py-2 bg-emerald-700 tracking-wider text-xs uppercase font-bold text-gray-100 w-full rounded-md hover:shadow-lg 
+                            </button>
+                            <button (click)='openAddCard()' class="mt-5 px-3 py-2 bg-emerald-700 tracking-wider text-xs uppercase font-bold text-gray-100 w-full rounded-md hover:shadow-lg 
                                     hover:shadow-emerald-600/10 hover:bg-emerald-500 transition-all 
                                     duration-300 ease-in-out">
                                 Add Card
-                        </button>
+                            </button>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -41,7 +42,8 @@
                 <div class="grid grid-cols-1 gap-8">
 
                     <!-- ################## INFO CARD ####################-->
-                    <div id="information" class="rounded-lg py-8 bg-secondary shadow shadow-2xl flex flex-row items-center">
+                    <form id="information" [formGroup]="basicInfoForm" (submit) = 'updateBasicInfo()'
+                        class="rounded-lg py-8 bg-secondary shadow shadow-2xl flex flex-row items-center">
                         <div class="w-1/6 h-full flex flex-col items-center justify-center">
                             <div>
                                 <span><i class="fa-solid fa-house fa-2xl" style="color: #a4a9b2;"></i></span>
@@ -50,390 +52,197 @@
                         <div class="grid grid-cols-2 gap-x-4 gap-y-4">
                             <div class="col-span-2">
                                 <h1 class="text-emerald-500 uppercase text-sm font-bold">Street</h1>
-                                <input class="w-full text-sm text-gray-300 focus:outline-none focus:border-b-1 bg-secondary placeholder:font-bold"
-                                    placeholder="544 Bayridge Parkway">
+                                <input
+                                    class="w-full text-sm font-bold tracking-wide text-gray-300 focus:outline-none focus:border-b-1 bg-secondary placeholder:font-bold"
+                                    placeholder="Your Address Street" formControlName='address_street'>
                             </div>
                             <div class="">
                                 <h1 class="text-emerald-500 uppercase text-sm font-bold">City</h1>
-                                <input class="text-sm text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
-                                    placeholder="Brooklyn">
+                                <input
+                                    class="text-sm font-bold tracking-wide text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
+                                    placeholder="Your City" formControlName='address_city'>
                             </div>
                             <div class="">
                                 <h1 class="text-emerald-500 uppercase text-sm font-bold">State</h1>
-                                <input class="text-sm text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
-                                    placeholder="New York">
+                                <input
+                                    class="text-sm font-bold tracking-wide text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
+                                    placeholder="Your State" formControlName='address_state'>
                             </div>
                             <div class="col-span-2">
                                 <h1 class="text-emerald-500 uppercase text-sm font-bold">Zipcode</h1>
-                                <input class="text-sm text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
-                                    placeholder="11209">
+                                <input
+                                    class="text-sm font-bold tracking-wide text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
+                                    placeholder="Your Zipcode" formControlName='address_zipcode'>
                             </div>
-
+                            <div>
+                                <button class="mt-2 px-3 py-2 bg-emerald-800 tracking-wider text-xs uppercase font-bold text-gray-100 w-full rounded-md hover:shadow-lg 
+                                hover:shadow-emerald-500/10 hover:bg-emerald-500 transition-all 
+                                duration-300 ease-in-out">Update Basic Info</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
 
                     <!-- ################## EMPLOYEE CARD ####################-->
-                    <div id="employee" class="rounded-lg py-8 bg-secondary shadow shadow-2xl flex flex-row items-center">
+                    <div *ngIf = 'staticInfo.user_type == "C"' id="employee" [formGroup]="corpInfoForm" (submit) = 'updateCorporateInfo()'
+                        class="rounded-lg py-8 bg-secondary shadow shadow-2xl flex flex-row items-center">
                         <div class="w-1/6 h-full flex flex-col items-center justify-center">
-                            <div>
+                            <div matBadge="!" [matBadgeHidden]="this.metadata.is_profile_complete" matBadgeColor="warn">
                                 <span><i class="fa-solid fa-briefcase fa-2xl" style="color: #c4cad4;"></i></span>
                             </div>
                         </div>
                         <div class="grid grid-cols-4 gap-x-2 gap-y-4">
                             <div class="col-span-2">
                                 <h1 class="text-emerald-500 uppercase text-sm font-bold">Company</h1>
-                                <input class="w-full text-sm text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
-                                    placeholder="NYU Tandon School of Engineering">
+                                <p class="w-full text-sm font-bold tracking-wide text-gray-300 bg-secondary focus:outline-none placeholder:font-bold">Corp Company </p>
                             </div>
                             <div class="">
-                                <h1 class="text-emerald-500 uppercase text-sm font-bold">Reg No.</h1>
-                                <input class="text-sm text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
-                                    placeholder="112000999">
+                                <h1 class="text-emerald-500 uppercase text-sm font-bold">Company Reg No.</h1>
+                                <p class="text-sm font-bold tracking-wide text-gray-300 bg-secondary focus:outline-none placeholder:font-bold">CMP11220</p>
                             </div>
                             <div class="">
                                 <h1 class="text-emerald-500 uppercase text-sm font-bold">Employee No.</h1>
-                                <input class="text-sm text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
-                                    placeholder="159102115">
+                                <input
+                                    class="text-sm font-bold tracking-wide text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
+                                    placeholder="Your Employee ID" formControlName='emp_id'>
+                            </div>
+                            <div>
+                                <button class="mt-2 px-3 py-2 bg-emerald-800 tracking-wider text-xs uppercase font-bold text-gray-100 w-full rounded-md hover:shadow-lg 
+                                hover:shadow-emerald-500/10 hover:bg-emerald-500 transition-all 
+                                duration-300 ease-in-out">Update Corporate Info</button>
                             </div>
                         </div>
                     </div>
 
                     <!-- ################## INDIVIDUAL CARD ####################-->
-                    <div id="employee" class="rounded-lg py-8 bg-secondary shadow shadow-2xl flex flex-row items-center">
+                    <form *ngIf = 'staticInfo.user_type == "I"' id="employee" [formGroup]="persInfoForm"
+                    (submit) = 'updatePersonalInfo()' class="rounded-lg py-8 bg-secondary shadow shadow-2xl flex flex-row items-center">
                         <div class="w-1/6 h-full flex flex-col items-center justify-center">
-                            <div>
+                            <div matBadge="!" [matBadgeHidden]="this.metadata.is_profile_complete" matBadgeColor="warn"> 
                                 <span><i class="fa-solid fa-hospital fa-2xl" style="color: #a8acb3;"></i></span>
                             </div>
                         </div>
-                        <div class="grid grid-cols-4 gap-x-4 gap-y-4">
+                        <div class="grid grid-cols-4 gap-x-2 gap-y-4">
                             <div class="col-span-2">
-                                <h1 class="text-emerald-500 uppercase text-sm font-bold">Insurance Policy No.</h1>
-                                <input class="w-full text-sm text-gray-300 focus:outline-none bg-secondary placeholder:font-bold"
-                                    placeholder="112000999">
+                                <h1 class="text-emerald-500 uppercase text-sm font-bold">Insurance Company</h1>
+                                <input
+                                    class="w-full font-bold tracking-wide text-sm text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
+                                    placeholder="Your Insurance Company" formControlName='insurance_company'>
                             </div>
                             <div class="">
-                                <h1 class="text-emerald-500 uppercase text-sm font-bold">Reg No.</h1>
-                                <input class="text-sm text-gray-300 focus:outline-none bg-secondary placeholder:font-bold"
-                                    placeholder="112000999">
+                                <h1 class="text-emerald-500 uppercase text-sm font-bold">Policy No.</h1>
+                                <input
+                                    class="text-sm font-bold tracking-wide text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
+                                    placeholder="Policy No." formControlName='insurance_policy_no'>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- ################## PAYMENT CARD ####################-->
-                    <mat-accordion> 
-                        <mat-expansion-panel hideToggle>
-                          <mat-expansion-panel-header class="bg-primary">
-                            <h1 class="text-emerald-500 uppercase text-sm font-bold 
-                                        hover:text-emerald-400 transition-all hover:shadow-2xl">
-                                        Your Payment Options</h1>
-                          </mat-expansion-panel-header>
-
-                          <!-- This is the column that shows the card-->
-                          <div id="employee" class="rounded-md py-8 bg-secondary shadow shadow-2xl flex flex-row items-center">
-                            <div class="w-1/6 h-full flex flex-col items-center justify-center">
-                                <div>
-                                    <span><i class="fa-solid fa-credit-card fa-2xl" style="color: #b6bbc3;"></i></span>
-                                </div>
+                            <div class="">
+                                <h1 class="text-emerald-500 uppercase text-sm font-bold">DL No.</h1>
+                                <input
+                                    class="text-sm font-bold tracking-wide text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
+                                    placeholder="DL Number" formControlName='dl_number'>
                             </div>
-                            <div class="grid grid-cols-1 gap-x-4 gap-y-10">
-                                <!--#### REPEATING CARD DETAILS ########-->
-                                <div class="grid grid-cols-6 gap-x-4 gap-y-4">
-                                    <div class="col-span-2">
-                                        <h1 class="text-emerald-500 uppercase text-sm font-bold">Card Number</h1>
-                                        <input class="w-full text-sm text-gray-300 bg-secondary placeholder:font-bold"
-                                            placeholder="****************1985">
-                                    </div>
-                                    <div class="col-span-2">
-                                        <h1 class="text-emerald-500 uppercase text-sm font-bold">Name on Card</h1>
-                                        <input class="text-sm text-gray-300 bg-secondary placeholder:font-bold"
-                                            placeholder="Rohit Srinath Shrothrium">
-                                    </div>
-                                    <div class="">
-                                        <h1 class="text-emerald-500 uppercase text-sm font-bold">Exp Date</h1>
-                                        <input class="text-sm text-gray-300 bg-secondary placeholder:font-bold"
-                                            placeholder="09/2022">
-                                    </div>
-                                    <div class="w-1/6 h-full flex flex-col items-center justify-center">
-                                        <div>
-                                            <button class="transition-all rounded-full hover:bg-red-400 hover:bg-opacity-20 px-2 py-1"><i class="fa-solid fa-trash" style="color: #cf7277;"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--#### REPEATING CARD DETAILS ########-->
-                                <div class="grid grid-cols-6 gap-x-4 gap-y-4">
-                                    <div class="col-span-2">
-                                        <h1 class="text-emerald-500 uppercase text-sm font-bold">Card Number</h1>
-                                        <input class="w-full text-sm text-gray-300 bg-secondary placeholder:font-bold"
-                                            placeholder="****************1985">
-                                    </div>
-                                    <div class="col-span-2">
-                                        <h1 class="text-emerald-500 uppercase text-sm font-bold">Name on Card</h1>
-                                        <input class="text-sm text-gray-300 bg-secondary placeholder:font-bold"
-                                            placeholder="Rohit Srinath Shrothrium">
-                                    </div>
-                                    <div class="">
-                                        <h1 class="text-emerald-500 uppercase text-sm font-bold">Exp Date</h1>
-                                        <input class="text-sm text-gray-300 bg-secondary placeholder:font-bold"
-                                            placeholder="09/2022">
-                                    </div>
-                                    <div class="w-1/6 h-full flex flex-col items-center justify-center">
-                                        <div>
-                                            <button class="transition-all rounded-full hover:bg-red-400 hover:bg-opacity-20 px-2 py-1"><i class="fa-solid fa-trash" style="color: #cf7277;"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </mat-expansion-panel>
-                    </mat-accordion>
-                    <!-- <form class="details mb-8 mt-4">
-                        <div class="rounded-3xl mt-2">
-                            <div class="mt-2 flex flex-row">
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-4 pb-2 px-4">
-                                        Street
-                                    </h2>
-                                    <input type="text" placeholder="Update Street Here"
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                            </div>
-                            <div class="mt-2 flex flex-row">
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-1 pb-2 px-4">
-                                        City
-                                    </h2>
-                                    <input type="text" placeholder="City"
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-1 pb-2 px-4">
-                                        State
-                                    </h2>
-                                    <input type="text" placeholder="State"
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                            </div>
-                            <div class="mt-2 flex flex-row">
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-1 pb-2 px-4">
-                                        Zipcode
-                                    </h2>
-                                    <input type="text" placeholder="Zipcode"
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-1 pb-2 px-4">
-                                        Contact
-                                    </h2>
-                                    <input type="text" placeholder="Phone"
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                            </div>
-                            <hr class="mt-4">
-                            <div class="mt-2 flex flex-row">
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-1 pb-2 px-4">
-                                        License No.
-                                    </h2>
-                                    <input type="text" placeholder="License No."
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-1 pb-2 px-4">
-                                        Policy No.
-                                    </h2>
-                                    <input type="text" placeholder="Policy No."
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                            </div>
-                            <div class="mt-2 flex flex-row">
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-4 pb-2 px-4">
-                                        Employee Reg Number
-                                    </h2>
-                                    <input type="text" placeholder="Reg no."
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                            </div>
-                            <div class="mt-2 flex flex-row items-center">
-                                <button>Update Profile</button>
-                            </div>
-                        </div>
-                    </form> -->
-                </div>
-
-            </div>
-        </div>
-        <!-- <div class="flex flex-col md:flex-row gap-4">
-            <div class="md:w-1/4">
-                <div class="bg-white rounded-lg shadow-md p-6 mb-4">
-                    <div class="flex flex-col items-center">
-                        <img class="rounded-full border shadow-xl w-3/4 p-4" src="assets/ava.png" alt="Profile Image">
-                        <h1 class="text-2xl font-bold pt-4">
-                            [First Name] [Last Name]
-                        </h1>
-                        <h1 class="text-md text-gray-500 pt-2">
-                            something&#64;gmail.com
-                        </h1>
-                        <h1 class="text-xs text-gray-500 pt-1">
-                            Individual
-                        </h1>
-                    </div>
-                    
-                    <form class="details mb-8 mt-4">
-                        <div class="rounded-3xl mt-2">
-                            <div class="mt-2 flex flex-row">
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-4 pb-2 px-4">
-                                        Street
-                                    </h2>
-                                    <input type="text" placeholder="Update Street Here"
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                            </div>
-                            <div class="mt-2 flex flex-row">
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-1 pb-2 px-4">
-                                        City
-                                    </h2>
-                                    <input type="text" placeholder="City"
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-1 pb-2 px-4">
-                                        State
-                                    </h2>
-                                    <input type="text" placeholder="State"
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                            </div>
-                            <div class="mt-2 flex flex-row">
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-1 pb-2 px-4">
-                                        Zipcode
-                                    </h2>
-                                    <input type="text" placeholder="Zipcode"
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-1 pb-2 px-4">
-                                        Contact
-                                    </h2>
-                                    <input type="text" placeholder="Phone"
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                            </div>
-                            <hr class="mt-4">
-                            <div class="mt-2 flex flex-row">
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-1 pb-2 px-4">
-                                        License No.
-                                    </h2>
-                                    <input type="text" placeholder="License No."
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-1 pb-2 px-4">
-                                        Policy No.
-                                    </h2>
-                                    <input type="text" placeholder="Policy No."
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                            </div>
-                            <div class="mt-2 flex flex-row">
-                                <div class="w-full mr-5">
-                                    <h2 class="text-sm pt-4 pb-2 px-4">
-                                        Employee Reg Number
-                                    </h2>
-                                    <input type="text" placeholder="Reg no."
-                                        class="w-full pb-1 px-4 text-gray-500 focus:outline-none placeholder:text-sm">
-                                    
-                                </div>
-                            </div>
-                            <div class="mt-2 flex flex-row items-center">
-                                <button>Update Profile</button>
+                            <div>
+                                <button class="mt-2 px-3 py-2 bg-emerald-800 tracking-wider text-xs uppercase font-bold text-gray-100 w-full rounded-md hover:shadow-lg 
+                                hover:shadow-emerald-500/10 hover:bg-emerald-500 transition-all 
+                                duration-300 ease-in-out">Update Employee Info</button>
                             </div>
                         </div>
                     </form>
-                    <hr>
+
+                    <!-- ################## PAYMENT CARD ####################-->
+                    <mat-accordion>
+                        <mat-expansion-panel hideToggle >
+                            <mat-expansion-panel-header class="bg-primary">
+                                <h1 *ngIf = 'paymentData.length !=0'class="text-emerald-500 uppercase text-sm font-bold 
+                                        hover:text-emerald-400 transition-all hover:shadow-2xl">
+                                    Your Payment Options</h1>
+                                <h1 *ngIf = 'paymentData.length == 0' class="text-red-400 uppercase text-sm font-bold 
+                                    hover:text-red-500 transition-all hover:shadow-2xl">
+                                Your Payment Options (Required)</h1>
+                            </mat-expansion-panel-header>
+
+                            <!-- This is the column that shows the card-->
+                            <div id="payment"
+                                class="rounded-md pt-8 pb-8 bg-secondary shadow shadow-2xl flex flex-row items-center">
+                                <div class="w-1/6 h-full flex flex-col items-center justify-center">
+                                    <div matBadge="!" [matBadgeHidden]="paymentData.length !=0" matBadgeColor="warn">
+                                        <span><i class="fa-solid fa-credit-card fa-2xl"
+                                                style="color: #b6bbc3;"></i></span>
+                                    </div>
+                                </div>
+                                <div class="w-5/6 grid grid-cols-1 gap-x-4 gap-y-10">
+                                    <!--#### REPEATING CARD DETAILS ########-->
+                                    <div *ngIf = 'paymentData.length != 0'>
+                                        <div *ngFor="let card of paymentData" class="pb-2 grid grid-cols-7 gap-x-3 gap-y-4">
+                                            <div class="col-span-2">
+                                                <h1 class="text-emerald-500 uppercase text-xs font-bold">Card Number</h1>
+                                                <p class="w-full py-1 tracking-wider font-bold text-xs text-gray-300 bg-secondary placeholder:font-bold">{{card.card_number}}</p>
+                                            </div>
+                                            <div class="col-span-2">
+                                                <h1 class="text-emerald-500 uppercase text-xs font-bold">Name on Card</h1>
+                                                <p class="w-full py-1 tracking-wider font-bold text-xs text-gray-300 bg-secondary placeholder:font-bold">{{card.card_name}}</p>
+                                            </div>
+                                            <div class="">
+                                                <h1 class="text-emerald-500 uppercase text-xs font-bold">Type</h1>
+                                                <p *ngIf = 'card.payment_method === "D"' class="w-full text-xs py-1 text-gray-300 bg-secondary font-bold">Debit</p>
+                                                <p *ngIf = 'card.payment_method === "G"' class="w-full text-xs py-1 text-gray-300 bg-secondary font-bold">Gift</p>
+                                                <p *ngIf = 'card.payment_method === "C"' class="w-full text-xs py-1 text-gray-300 bg-secondary font-bold">Credit</p>
+                                            </div>
+                                            <div class="">
+                                                <h1 class="text-emerald-500 uppercase text-xs font-bold">Exp Date</h1>
+                                                <p class="w-full text-xs py-1 text-gray-300 bg-secondary font-bold">{{card.card_exp_date}}</p>
+                                            </div>
+                                            <div class="h-full flex flex-col items-center justify-center">
+                                                <div>
+                                                    <button (click) = "deletePayment(card.payment_id)"
+                                                        class="transition-all rounded-full hover:bg-red-400 hover:bg-opacity-20 px-2 py-1"><i
+                                                            class="fa-solid fa-trash" style="color: #cf7277;"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf = '!paymentData.length' class="flex flex-col items-start justify-evenly pb-4">
+                                        <div class="uppercase tracking-widest font-bold text-gray-500 text-xs">
+                                            Looks like you are broke!
+                                        </div>
+                                        <div>
+                                            <button (click)='openAddCard()' class="mt-2 px-3 py-2 bg-emerald-800 tracking-wider text-xs uppercase font-bold text-gray-100 w-full rounded-md hover:shadow-lg 
+                                            hover:shadow-emerald-500/10 hover:bg-emerald-500 transition-all 
+                                            duration-300 ease-in-out">Add Card</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!--#### REPEATING CARD DETAILS ########-->
+                                    <!-- <div class="grid grid-cols-6 gap-x-4 gap-y-4">
+                                        <div class="col-span-2">
+                                            <h1 class="text-emerald-500 uppercase text-sm font-bold">Card Number</h1>
+                                            <input
+                                                class="w-full text-sm text-gray-300 bg-secondary placeholder:font-bold"
+                                                placeholder="****************1985">
+                                        </div>
+                                        <div class="col-span-2">
+                                            <h1 class="text-emerald-500 uppercase text-sm font-bold">Name on Card</h1>
+                                            <input class="text-sm text-gray-300 bg-secondary placeholder:font-bold"
+                                                placeholder="Rohit Srinath Shrothrium">
+                                        </div>
+                                        <div class="">
+                                            <h1 class="text-emerald-500 uppercase text-sm font-bold">Exp Date</h1>
+                                            <input class="text-sm text-gray-300 bg-secondary placeholder:font-bold"
+                                                placeholder="09/2022">
+                                        </div>
+                                        <div class="w-1/6 h-full flex flex-col items-center justify-center">
+                                            <div>
+                                                <button
+                                                    class="transition-all rounded-full hover:bg-red-400 hover:bg-opacity-20 px-2 py-1"><i
+                                                        class="fa-solid fa-trash" style="color: #cf7277;"></i></button>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
                 </div>
             </div>
-            <div class="md:w-3/4">
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h2 class="text-lg font-semibold">Your Booking Summary</h2>
-                    <h2 class="text-sm mb-4">Please revise this before proceeding.</h2>
-                    <hr class="my-2">
-                    <h2 class="text-lg">Mercedes</h2>
-                    <h2 class="text-2xl font-semibold">SLS-300 Q1 - 2022</h2>
-                    <h2 class="text-sm">Luxury Sedan</h2>
-                    <span
-                        class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Comfortable</span>
-                    <span
-                        class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Economic</span>
-                    <span
-                        class="bg-teal-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Popular</span>
-                    <hr class="my-4">
-                    <div class="flex justify-between mb-2">
-                        <span class="font-semibold">Pickup</span>
-                        <span class="text-sm">Some Location here</span>
-                    </div>
-                    <div class="flex justify-between mb-4">
-                        <span class="font-semibold">Dropoff</span>
-                        <span class="text-sm">Some Location here</span>
-                    </div>
-                    <div class="flex justify-between mb-4">
-                        <span>
-                            <div>
-                                <h1 class="font-semibold text-sm">Pickup Date</h1>
-                                <p class="text-sm">MM/DD/YYYY</p>
-                            </div>
-                        </span>
-                        <span>
-                            <div>
-                                <h1 class="font-semibold text-sm">Dropff Date</h1>
-                                <p class="text-sm">MM/DD/YYYY</p>
-                            </div>
-                        </span>
-                    </div>
-                    <div class="flex justify-between mb-2">
-                        <span>Vehicle Rate</span>
-                        <span>$19.99/day</span>
-                    </div>
-                    <div class="flex justify-between mb-2">
-                        <span>Subtotal</span>
-                        <span>$19.99</span>
-                    </div>
-                    <div class="flex justify-between mb-2">
-                        <span>Taxes</span>
-                        <span>$1.99</span>
-                    </div>
-                    <div class="flex justify-between mb-2">
-                        <span>Discount</span>
-                        <span class="text-red-500">-$0.00</span>
-                    </div>
-                    <hr class="my-2">
-                    <div class="flex justify-between mb-2">
-                        <span class="font-semibold">Total</span>
-                        <span class="font-semibold">$21.98</span>
-                    </div>
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">Confirm Order</button>
-                </div>
-            </div>
-        </div> -->
+        </div>
     </div>
 </div>

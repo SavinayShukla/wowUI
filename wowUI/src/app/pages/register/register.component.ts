@@ -23,16 +23,16 @@ export class RegisterComponent {
 
   constructor(private router: Router, private fb: FormBuilder, private _snackBar: MatSnackBar, private userService: UserService) { 
     this.regForm = this.fb.group({
-      fname: ['', Validators.required],
-      lname: ['', Validators.required],
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-      street: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      zipcode: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+      address_street: ['', Validators.required],
+      address_city: ['', Validators.required],
+      address_state: ['', Validators.required],
+      address_zipcode: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
     });
   }
 
@@ -40,28 +40,29 @@ export class RegisterComponent {
     this.submitted = true;
     if (this.regForm.valid) {
       this.isLoading = true;
-      const formData = this.regForm.value;
-      // const formDataJson = JSON.stringify(formData);
-      this.userService.saveUser(formData).subscribe(
+      const signUpData = this.regForm.value;
+      delete signUpData.confirmPassword;
+
+      this.userService.registerUser(signUpData).subscribe(
         (response) => {
-          console.log('User registration successful', response);
           this.isLoading = false;
-          this.router.navigate(['/home']);
+          this.openSnackBar(response.message);
+          this.router.navigate(['/login']);
           // Optionally, you can navigate to another page or perform additional actions here
         },
         (error) => {
           console.log(error);
           this.error = "It is not working!";
-          this.openSnackBar();
+          this.openSnackBar(error.error.message);
           this.isLoading = false;
         }
       );
     }
   }
 
-  openSnackBar() {
+  openSnackBar(message:any) {
     this._snackBar.openFromComponent(DefaultAlertComponent, {
-      data: this.error,
+      data: message,
       duration: 3000
     });
   }

@@ -1,11 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DefaultAlertComponent } from '../../snackbar/default-alert/default-alert.component';
+import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,45 +22,44 @@ export class LoginComponent {
   submitted = false;
   error:string = "";
 
-  constructor(private authService : AuthService, private _snackBar: MatSnackBar, private router: Router, private fb: FormBuilder){
+  constructor(private userService: UserService, private authService: AuthService,
+              private _snackBar: MatSnackBar, 
+              private router: Router, private fb: FormBuilder){
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
+
   onSubmit() {
     this.submitted = true;
     const email = this.loginForm.get('email');
     const password = this.loginForm.get('password');
     if (this.loginForm.valid) {
-      const formData = this.loginForm.value;
-      // const formDataJson = JSON.stringify(formData);
-      // console.log(formDataJson);
+      const loginData = this.loginForm.value;
       this.isLoading = true;
       if(email && password){
-        this.authService.checkLogin(email.value, password.value).subscribe(
+        this.userService.loginUser(loginData).subscribe(
           (response) => {
-            this.authService.login();
-            console.log('Login Successful', response);
+            // this.authService.login();
             this.isLoading = false;
             this.router.navigate(['/home']);
+            this.openSnackBar("Login Successful!");
             // Optionally, you can navigate to another page or perform additional actions here
           },
           (error) => {
-            console.log(error);
-            this.error = "Incorrect Email/Password!";
-            this.openSnackBar();
+            this.openSnackBar(error);
             this.isLoading = false;
           }
         );
       }
     }
   }
-  openSnackBar() {
+  openSnackBar(data:any) {
     this._snackBar.openFromComponent(DefaultAlertComponent, {
-      data: this.error,
-      duration: 30000,
-      panelClass: ['success-snackbar']
+      data: data,
+      duration: 5000,
+      // panelClass: ['success-snackbar']
     });
   }
 }
