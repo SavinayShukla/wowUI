@@ -1,21 +1,22 @@
-<div class="transition-all ease-in-out delay-150 
+<div class="w-full transition-all ease-in-out delay-150 
             mb-8 flex flex-row shadow-2xl
             backdrop-blur-2xl bg-gray/100
             hover:-translate-y-1 
-            hover:shadow-emerald-500/30 
-            bg-secondary rounded-3xl
+            hover:shadow-emerald-400/40 
+            bg-secondary rounded-md
             ">
 
-    <div class="flex flex-col p-4 items-center justify-center">
-      <img class="h-40" src="assets/car.png" alt="Car Image">
+    <div class="w-1/5 flex flex-col ml-8 items-center justify-center">
+      <img class="h-auto" src="assets/car.png" alt="Car Image">
     </div>
-    <div class="flex-1 w-auto">
-      <div class="p-4 flex flex-col justify-between">
-        <div class="mb-8">
-          <div class="text-emerald-500 mt-5">{{resultData.make}}</div>
-          <div class="text-gray-200 font-bold text-xl">{{resultData.model}}</div>
-          <div class="flex items-center my-1">
-            <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+    <div class="w-3/5">
+      <div class="py-8 px-6 flex flex-col justify-between">
+          <div class="text-emerald-400 uppercase tracking-widest text-xs font-bold">{{resultData.make}}</div>
+          <div class="text-gray-200 uppercase tracking-wide font-bold text-2xl">{{resultData.model}}</div>
+          <div class="text-emerald-400 text-sm">{{resultData.type}}</div>
+          <div class="flex items-center my-2">
+            <i class="fa-solid fa-users mr-2" style="color: #606061;"></i>
+            <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="currentColor" viewBox="0 0 22 20">
               <path
                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
@@ -41,18 +42,22 @@
                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
             </svg>
           </div>
-          <p class="text-gray-400 text-base my-3">
-            Experience elegance and comfort on the road with our XYZ Sedan. This sleek and stylish sedan is the perfect choice for those seeking a smooth and refined driving experience. With its modern design and advanced features, the XYZ Sedan stands out as a reliable companion for any journey.
-          </p>
-          <span *ngFor="let tag of resultData.tags" class="bg-teal-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">{{tag}}</span>
-        </div>
+          <div class="w-full">
+            <p class="w-full text-gray-400 text-sm my-2">
+              Experience elegance and comfort on the road with our XYZ Sedan.<br>Experience elegance and comfort on the road with our XYZ Sedan.
+              </p>
+          </div>
+          <div>
+            <span *ngFor="let tag of resultData.tags" class="bg-emerald-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">{{tag}}</span>
+          </div>
       </div>
     </div>
-    <div class="px-20 flex border-l-2 border-primary flex-col items-center justify-center">
-      <div class="m-2 flex flex-col justify-center items-center">
-        <h1 class="text-4xl text-indigo-100">${{resultData.rate}}</h1>
-        <p class="text-sm text-indigo-100">per day</p>
-        <p class="text-sm text-indigo-100">(inc. taxes)</p>
+    <div class="w-1/5 px-30 py-12 flex border-l-2 border-primary flex-col items-center justify-center">
+      <div class="flex flex-col justify-center items-center">
+        <h1 class="text-3xl text-gray-200">${{resultData.rate}}</h1>
+        <p class="text-sm text-gray-200">per day</p>
+        <p class="text-xs pt-2 text-gray-400">Extra Miles: $10/mile</p>
+        <p class="text-xs pb-1 text-gray-400">(inc. taxes)</p>
       </div>
       <div class="m-2 flex">
         <button (click)="onButtonClick()" class="bg-emerald-500 shadow-xl text-white py-2 px-4 rounded">Book Now </button>

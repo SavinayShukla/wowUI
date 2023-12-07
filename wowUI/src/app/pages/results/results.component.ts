@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { ResultcardComponent } from '../../cards/resultcard/resultcard.component';
 import { DataService } from '../../services/data.service';
 import { HttpClient } from '@angular/common/http';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-results',
@@ -18,18 +19,19 @@ export class ResultsComponent implements OnInit{
   //Search Results goes here.
   searchResults: any[] = [];
   loading: boolean = true;
+  searchDetails : any;
 
-  constructor(private authService: AuthService, private router: Router, private dataService: DataService) { }
+  constructor(private shared: SharedService, private router: Router, private dataService: DataService) { }
 
   public ngOnInit(): void {
-    //Here Subscribe to the Search Result API
-    // setTimeout(() => {
-      
-    // }, 2000);
+    this.shared.searchDetails$.subscribe((details) =>{
+      this.searchDetails = details;
+    });
+
+
     this.dataService.getResults().subscribe(data => {
       this.searchResults = data.cars;
       this.loading = false;
-      console.log(data.cars);
     });
     
   }

@@ -4,8 +4,8 @@
     <h1 *ngIf="loading" class="text-gray-200 text-4xl font-bold animate-pulse">Fetching Rides <span><i class="px-2 fa-solid fa-spinner fa-spin fa-lg" style="color: #10b981;"></i></span></h1>
   </div>
   <div class="flex items-start">
-    <p *ngIf="!loading" class="text-emerald-600 text-md p-2 font-medium">#FROM to #TO Between FROM_DATE to END_DATE</p>
-    <p *ngIf="loading" class="text-emerald-600 text-lg p-2 font-medium animate-pulse">Let us the best rides based on your search</p>
+    <p *ngIf="!loading && searchDetails" class="text-emerald-600 text-md p-2 font-medium">{{searchDetails.pickupLoc}} to {{searchDetails.dropoffLoc}} Between {{searchDetails.pickupDate}} to{{searchDetails.dropoffDate}}</p>
+    <p *ngIf="loading" class="text-emerald-600 text-lg p-2 font-medium animate-pulse">Let us search the best rides based on your search</p>
   </div>
   <div *ngIf='!loading' class="bg-primary flex flex-row justify-center items-start">
     <!-- Search Filters Column -->
@@ -86,7 +86,7 @@
     </div>
     <!-- Result Cards Column -->
     <div class="bg-primary container mt-10 mx-8 mb-10 w-2/3 flex flex-col justify-center items-center min-w-[1200px]">
-      <div *ngFor="let result of searchResults">
+      <div *ngFor="let result of searchResults" class="w-full">
         <!-- handleButtonClick catches the click from resultCard component -- IS IMPT -->
         <app-resultcard [resultData]="result" (buttonClick)="handleButtonClick($event)"></app-resultcard>
       </div>

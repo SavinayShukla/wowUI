@@ -6,14 +6,15 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AutocompleteService } from '../../services/autocomplete.service';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MetadataService } from '../../services/metadata.service';
 import { PopupService } from '../../services/alerts/popup.service';
-
+import { SharedService } from '../../services/shared.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-home',
@@ -27,18 +28,22 @@ import { PopupService } from '../../services/alerts/popup.service';
 
 export class HomeComponent implements OnInit {
   //Variables
-  predictions: google.maps.places.AutocompletePrediction[] = [];
+  // predictions: google.maps.places.AutocompletePrediction[] = [];
+  predictions : any;
   location: string = '';
   searchForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private popup: PopupService,
-    private placesAutocompleteService: AutocompleteService, private metadataService: MetadataService) {
+  constructor(private fb: FormBuilder, private router: Router, 
+              private popup: PopupService, private shared: SharedService,
+              private placesAutocompleteService: AutocompleteService, 
+              private metadataService: MetadataService, private sharedService: SharedService) {
     this.searchForm = this.fb.group({
-      intercity: [false],
-      pickupLoc: [''],
-      dropoffLoc: [{value: '', disabled: true}],
-      pickupDate: [''],
-      dropoffDate: [''],
+      intercity: [false, Validators.required],
+      pickupLoc: ['', Validators.required],
+      dropoffLoc: [{value: '', disabled: true}, Validators.required],
+      pickupDate: ['', Validators.required],
+      dropoffDate: ['', Validators.required],
+      
     });
 
     // Subscribe to changes in the disableInput control
@@ -61,31 +66,47 @@ export class HomeComponent implements OnInit {
         console.log(error);
       }
     );
+
+    this.sharedService.searchDetails$.subscribe((data) =>{
+      console.log(data);
+      this.searchForm.patchValue({
+        // intercity: data.intercity,
+        pickupLoc: data.pickupLoc,
+        dropoffLoc: data.dropoffLoc,
+        dropoffDate: new Date(data.dropoffDate),
+        pickupDate: new Date(data.pickupDate),
+      });
+    })
+
   }
 
   onInput(event: any): void {
     const input = event.target.value;
     this.placesAutocompleteService.getPlacePredictions(input)
-      .then(predictions => {this.predictions = predictions})
-      .catch(error => console.error(error));
+      .subscribe(predictions => {
+        console.log(predictions);
+        this.predictions = predictions as any[]});
   }
 
-  selectPrediction(prediction: google.maps.places.AutocompletePrediction): void {
-    this.location = prediction.description;
-    this.predictions = []; // Clear predictions after selecting one
-  }
+  // selectPrediction(prediction: google.maps.places.AutocompletePrediction): void {
+  //   this.location = prediction.description;
+  //   this.predictions = []; // Clear predictions after selecting one
+  // }
 
   onSubmit() {
-    // Perform form processing here
-    // ...
-    // call CheckUser(ob)
+    if(this.searchForm.valid){
+    const formattedPickupDate = moment(this.searchForm.value.pickupDate);
+    const formattedDropoffDate = moment(this.searchForm.value.dropoffDate);
+    this.searchForm.patchValue({
+      pickupDate : formattedPickupDate.format("MM/DD/YYYY"),
+      dropoffDate : formattedDropoffDate.format("MM/DD/YYYY")
+    })
 
-    // Navigate to the new component upon form submission
-    
-    // if(this.authService.login()){
-    //   this.router.navigate(['/home']);
-    // }
+    this.shared.updateSearchDetails(this.searchForm.value);
     this.router.navigate(['home/results'])
+
+    }
+    
   }
 
   //This handles the scenarios if the metadata fetches empty profiles.
