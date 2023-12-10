@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BookingService } from '../../services/booking.service';
 
 @Component({
   selector: 'pend-order',
@@ -9,9 +10,16 @@ import { CommonModule } from '@angular/common';
   styleUrl: './pend-order.component.css'
 })
 export class PendOrderComponent {
-  @Output() dataEvent = new EventEmitter();
-  sendData() {
-    const dataToSend = 'Hello from child!';
-    this.dataEvent.emit(dataToSend);
+  @Input() orderData: any;
+
+  constructor(private bookingService: BookingService){}
+
+  startRide(){
+    const startRideInfo  = {
+      booking_id : this.orderData.booking_id
+    }
+    this.bookingService.startRide(startRideInfo).subscribe((response)=>{
+      this.bookingService.refreshBookingLists();
+    })
   }
 }

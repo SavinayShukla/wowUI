@@ -148,7 +148,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAwNTQ3MzkyLCJpYXQiOjE3MDA1NDcwOTIsImp0aSI6IjFmMTMyZjk1NTg2ZDRlYmJiNTc1YTI1NDRiZGQ4OWQ4IiwidXNlcl9pZCI6Mn0.eRjtXZCYHLz_dKCN7UeTDXGvyzVpIyr4aOCqcrEUqrs",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -157,7 +157,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"rs8031@nyu.edu\",\n    \"phone\": \"7325229576\",\n    \"first_name\": \"Rohit\",\n    \"last_name\": \"Shrothrium Srinath\",\n    \"address_street\": \"544 Bayridge Pkwy\",\n    \"address_city\": \"Brooklyn\",\n    \"address_state\": \"NY\",\n    \"address_zipcode\": \"11209\",\n    \"user_type\": \"I\"\n}",
+					"raw": "{\n    \"email\": \"rs8031@nyu.edu\",\n    \"phone\": \"7325229576\",\n    \"first_name\": \"Rohit\",\n    \"last_name\": \"Shrothrium Srinath\",\n    \"address_street\": \"544 Bayridge Pkwy\",\n    \"address_city\": \"Brooklyn\",\n    \"address_state\": \"NY\",\n    \"address_zipcode\": \"11209\",\n    \"user_type\": \"C\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -291,7 +291,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAwNjg0MjExLCJpYXQiOjE3MDA2ODM5MTEsImp0aSI6IjFmMjYzNWMyMGU0MjQ3ZTI4M2JhY2QwNDY4N2E3ZTc2IiwidXNlcl9pZCI6Mn0.3kGLKm7AVhDSA7AxcLnjGhAKu0x6mccFVJQ1JAkVNXI",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -405,7 +405,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"payment_id\": 2\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -413,7 +413,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/swimlane/payment/",
+					"raw": "{{host}}/swimlane/payment/?payment_id=2",
 					"host": [
 						"{{host}}"
 					],
@@ -421,6 +421,12 @@
 						"swimlane",
 						"payment",
 						""
+					],
+					"query": [
+						{
+							"key": "payment_id",
+							"value": "2"
+						}
 					]
 				}
 			},
@@ -434,7 +440,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxMDU5MTMwLCJpYXQiOjE3MDA3NTkxMzAsImp0aSI6IjExNmJiNzNhNDE2YTQ4ODFhYzk3YmViZGMxMzdjZjBiIiwidXNlcl9pZCI6Mn0.xVnz7KoQvOc4sNPKRt3A1jmn3GurvBEXC-ANUQ9qur0",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -458,6 +464,16 @@
 		{
 			"name": "Search Office",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -475,6 +491,322 @@
 							"key": "address_city",
 							"value": ""
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Individual / Corporate Customer details",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDE1NDQ4LCJpYXQiOjE3MDE3MTU0NDgsImp0aSI6ImUzYTEwNzJkYzY3YjRiZjg5MjU2MDYwZTljNWJjMzU2IiwidXNlcl9pZCI6MzUwfQ._7FfE2vxS3I94UVSt3fQrTAvSEsveJ_j8bqtH34w6Ho",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/swimlane/customer/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"swimlane",
+						"customer",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Vehicles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDU4NzA1LCJpYXQiOjE3MDE3NTg3MDUsImp0aSI6ImJmYjA0MzEyM2M4OTRhYjE4N2M1YjFmNTY5OWM1ZTdjIiwidXNlcl9pZCI6NTR9.ZFVtN4xUCgb7zEWLeYuivRyOtSbXe3KcQoLo5I58uXM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pickup_date\": \"2018-09-01\",\n    \"dropoff_date\": \"2018-10-01\",\n    \"pickup_location\": 1,\n    \"vehicle_id__gt\": 1\n    // \"make\": [\"Toyota\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/vehicle/get/?start_date=2018-09-01&end_date=2018-10-01",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"vehicle",
+						"get",
+						""
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2018-09-01"
+						},
+						{
+							"key": "end_date",
+							"value": "2018-10-01"
+						},
+						{
+							"key": "make",
+							"value": "Toyota",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate Coupon",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"coupon_code\": \"hxpUd\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/swimlane/coupon/validate/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"swimlane",
+						"coupon",
+						"validate",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Booking BEGIN",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vehicle_id\": \"\",\n    \"pickup_date\": \"\",\n    \"pickup_location\": \"\",\n    \"dropoff_date\": \"\",\n    \"dropoff_location\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/swimlane/booking/begin/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"swimlane",
+						"booking",
+						"begin",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Booking END",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"booking_id\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/swimlane/booking/end/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"swimlane",
+						"booking",
+						"end",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Booking START",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"booking_id\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/swimlane/booking/start/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"swimlane",
+						"booking",
+						"start",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Booking UPDATE",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"booking_id\": \"\",\n    \"dropoff_location\": \"\",\n    \"payment_id\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/swimlane/booking/update/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"swimlane",
+						"booking",
+						"update",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Booking CONFIRM",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"booking_id\": \"\",\n    \"payment_id\": [],\n    \"coupon_code\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/swimlane/booking/complete/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"swimlane",
+						"booking",
+						"complete",
+						""
 					]
 				}
 			},

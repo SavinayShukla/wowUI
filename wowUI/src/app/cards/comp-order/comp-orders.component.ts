@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
 
@@ -9,9 +9,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
   templateUrl: './comp-orders.component.html',
   styleUrl: './comp-orders.component.css'
 })
-export class CompOrdersComponent {
-  public cardToggle = false;
-  openCard() {
-    this.cardToggle = !this.cardToggle;
-  }
+export class CompOrdersComponent{
+  @Input() orderData: any;
+
 }

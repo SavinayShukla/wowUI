@@ -1,24 +1,29 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import moment from 'moment';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
+  private getVehiclesURI = `${environment.host}/vehicle/get/`;
+
   private searchCardSubject = new BehaviorSubject<any>(null);
   searchCardData$ = this.searchCardSubject.asObservable();
 
   private searchSubject = new BehaviorSubject<any>(null);
   searchDetails$ = this.searchSubject.asObservable();
 
-  // private couponSubject = new BehaviorSubject<any>(null);
-  // coupon$ = this.couponSubject.asObservable();
-
   private pricingSubject = new BehaviorSubject<any>(null);
   pricingInfo$ = this.pricingSubject.asObservable();
+
+  private resultSubject = new BehaviorSubject<any[]>([]);
+  results$ = this.resultSubject.asObservable();
   
-  constructor() { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
   
   updateResultCardData(newResultCard: any) {
     this.searchCardSubject.next(newResultCard);
@@ -28,18 +33,21 @@ export class SharedService {
     this.searchSubject.next(newSearchDetails);
   }
 
-  // updateCoupon(newCoupon: any) {
-  //   this.couponSubject.next(newCoupon);
-  // }
+  updateResults(newResults: any) {
+    this.resultSubject.next(newResults);
+  }
 
   updatePricing() {
-    var basePrice = this.searchCardSubject.value.rate;
+    var basePrice = this.searchCardSubject.value.class_id.rent_charge;
     //Calculation of days
     const startMoment = moment(new Date(this.searchSubject.value.pickupDate));
     const endMoment = moment(new Date( this.searchSubject.value.dropoffDate));
-    var days  = endMoment.diff(startMoment, 'days');
-    const totalPrice = (basePrice * days);
-    this.pricingSubject.next({finalPrice : totalPrice,
+    var days  = endMoment.diff(startMoment, 'days') + 1;
+    var taxes = 1.99;
+    const subtotal = (basePrice * days);
+    const totalPrice = subtotal + taxes;
+    this.pricingSubject.next({subtotal : subtotal,
+                              finalPrice : totalPrice,
                               originalPrice: totalPrice,
                               coupon : null});
   }
@@ -53,8 +61,23 @@ export class SharedService {
     var prevPrice = this.pricingSubject.value.originalPrice;
     const newPrice = prevPrice * (1- percent);
     const couponDiscount = prevPrice - newPrice;
-    this.pricingSubject.next({finalPrice : newPrice,
+    this.pricingSubject.next({subtotal : this.pricingSubject.value.subtotal,
+                              finalPrice : newPrice,
                               originalPrice: prevPrice,
                               coupon : couponDiscount});
   }
+
+  getVehicles(request : any): Observable<any> {
+    const token = this.authService.getAccessToken();
+    console.log(request);
+    if(token){
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      });
+      return this.http.post(this.getVehiclesURI, request, {headers});
+    }
+    return of(null);
+  }
+
 }

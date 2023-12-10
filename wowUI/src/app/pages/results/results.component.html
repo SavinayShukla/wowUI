@@ -4,7 +4,7 @@
     <h1 *ngIf="loading" class="text-gray-200 text-4xl font-bold animate-pulse">Fetching Rides <span><i class="px-2 fa-solid fa-spinner fa-spin fa-lg" style="color: #10b981;"></i></span></h1>
   </div>
   <div class="flex items-start">
-    <p *ngIf="!loading && searchDetails" class="text-emerald-600 text-md p-2 font-medium">{{searchDetails.pickupLoc}} to {{searchDetails.dropoffLoc}} Between {{searchDetails.pickupDate}} to{{searchDetails.dropoffDate}}</p>
+    <p *ngIf="!loading && searchDetails" class="text-emerald-600 text-md p-2 font-medium">{{searchDetails.pickupLoc}} to {{searchDetails.dropoffLoc}} Between {{searchDetails.pickup_date}} to{{searchDetails.dropoff_date}}</p>
     <p *ngIf="loading" class="text-emerald-600 text-lg p-2 font-medium animate-pulse">Let us search the best rides based on your search</p>
   </div>
   <div *ngIf='!loading' class="bg-primary flex flex-row justify-center items-start">

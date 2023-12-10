@@ -140,57 +140,10 @@
                     </div>
                   </div>
                   <div class="flex flex-row items-center">
-                    <mat-radio-button value="2"></mat-radio-button>
+                    <mat-checkbox (change) = 'onCheckboxChange(card.payment_id)'></mat-checkbox>
                   </div>
                 </div>
               </div>
-              <!-- <form class="grid grid-cols-4 gap-x-8 gap-y-2 mb-8">
-                <select class="w-full px-4 py-3 rounded-lg font-medium bg-primary border border-gray-500 uppercase placeholder-gray-400 text-xs text-gray-400 focus:border-emerald-400">
-                  <option selected>Open this select menu</option>
-                  <option> ******1739</option>
-                  <option> ******1899</option>
-                </select>
-                <div class="col-start-1 col-span-2">
-                  <h2 class="text-xs tracking-widest p-2 text-gray-400 uppercase font-bold">
-                    Card No.
-                  </h2>
-                  <input type="text" placeholder="Card No"
-                    class="w-full px-4 py-3 rounded-lg font-medium bg-primary border border-gray-500 
-                    placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400">
-                </div>
-                <div class="w-full col-span-2">
-                  <h2 class="text-xs tracking-widest p-2 text-gray-400 uppercase font-bold">
-                    Name on Card
-                  </h2>
-                  <input type="text" placeholder="Name on Card"
-                    class="w-full px-4 py-3 rounded-lg font-medium bg-primary border border-gray-500 
-                    placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400">
-                </div>
-                <div class="w-full col-start-1 col-end-2">
-                  <h2 class="text-xs tracking-widest p-2 text-gray-400 uppercase font-bold">
-                    Valid To
-                  </h2>
-                  <input type="month" placeholder="Name on Card"
-                    class="w-full px-4 py-3 rounded-lg font-medium bg-primary border border-gray-500 
-                    placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400">
-                </div>
-                <div class="w-full col-start-2 col-end-3">
-                  <h2 class="text-xs tracking-widest p-2 text-gray-400 uppercase font-bold">
-                    CVV/CVC
-                  </h2>
-                  <input type="text" placeholder="CVV/CVC"
-                    class="w-full px-4 py-3 rounded-lg font-medium bg-primary border border-gray-500 
-                    placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400">
-                </div>
-                <div class="w-full col-start-3 col-end-4">
-                  <h2 class="text-xs tracking-widest p-2 text-gray-400 uppercase font-bold">
-                    Zipcode
-                  </h2>
-                  <input type="text" placeholder="Zipcode"
-                    class="w-full px-4 py-3 rounded-lg font-medium bg-primary border border-gray-500 
-                    placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400">
-                </div>
-              </form> -->
             </div>
           </div>
         </div>
@@ -202,45 +155,48 @@
           <h2 class="text-sm text-emerald-300 mb-4">Please revise your boooking details here</h2>
           <hr class="my-2">
           <h2 class="text-lg text-emerald-500">{{selectedCarData.make}}</h2>
-          <h2 class="text-2xl font-semibold text-gray-200">{{selectedCarData.model}}</h2>
-          <h2 class="text-sm text-gray-200 mb-2">{{selectedCarData.type}}</h2>
+          <h2 class="text-2xl font-semibold text-gray-200">{{selectedCarData.model}} {{selectedCarData.make_year | slice:0:4}}</h2>
+          <h2 class="text-sm text-gray-200 mb-2">{{selectedCarData.class_id.vehicle_class}}</h2>
           <span *ngFor="let tag of selectedCarData.tags"
             class="bg-teal-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">{{tag}}</span>
-          <!-- <span class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Economic</span>
-          <span class="bg-teal-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Popular</span> -->
           <hr class="my-4">
           <div class="flex justify-between mb-2">
-            <span class="font-semibold text-gray-200">Pickup</span>
-            <span *ngIf="searchDetails" class="text-sm text-gray-200">{{searchDetails.pickupLoc}}</span>
+            <span class="font-bold text-sm uppercase tracking-wider text-gray-400">Pickup</span>
+            <span *ngIf="searchDetails != undefined" class="text-sm font-bold tracking-wide text-gray-200">{{searchDetails.pickupLocData.address_street}}, 
+              {{searchDetails.pickupLocData.address_city}}, {{searchDetails.pickupLocData.address_state}} - {{searchDetails.pickupLocData.address_zipcode}}</span>
           </div>
-          <div class="flex justify-between mb-4">
-            <span class="font-semibold text-gray-200">Dropoff</span>
-            <span *ngIf="searchDetails" class="text-sm text-gray-200">{{searchDetails.dropoffLoc}}</span>
+          <div *ngIf='searchDetails != undefined && searchDetails.dropoffLocData == undefined' class="flex justify-between mb-4">
+            <span class="font-bold text-sm uppercase tracking-wider text-emerald-400 mt-2">Intercity Booking</span>
+          </div>
+          <div *ngIf='searchDetails != undefined && searchDetails.dropoffLocData != undefined' class="flex justify-between mb-4">
+            <span class="font-bold text-sm uppercase tracking-wider text-gray-400">Dropoff</span>
+            <span *ngIf="searchDetails" class="text-sm font-bold tracking-wide text-gray-200">{{searchDetails.dropoffLocData.address_street}}, 
+                {{searchDetails.dropoffLocData.address_city}}, {{searchDetails.dropoffLocData.address_state}} - {{searchDetails.dropoffLocData.address_zipcode}}</span>
           </div>
           <div class="flex justify-between mb-4">
             <span>
               <div>
-                <h1 class="font-semibold text-sm text-gray-200">Pickup Date</h1>
-                <p *ngIf="searchDetails" class="text-sm text-gray-200">{{searchDetails.pickupDate}}</p>
+                <h1 class="font-bold text-sm uppercase tracking-wider text-gray-400">Pickup Date</h1>
+                <p *ngIf="searchDetails" class="text-sm font-bold tracking-wide text-gray-200">{{searchDetails.pickup_date}}</p>
               </div>
             </span>
             <span>
-              <div>
-                <h1 class="font-semibold text-sm text-gray-200">Dropff Date</h1>
-                <p *ngIf="searchDetails" class="text-sm text-gray-200">{{searchDetails.dropoffDate}}</p>
+              <div class="text-end">
+                <h1 class="font-bold text-sm uppercase tracking-wider text-gray-400">Dropff Date (Exp)</h1>
+                <p *ngIf="searchDetails" class="text-sm font-bold tracking-wide text-gray-200">{{searchDetails.dropoff_date}}</p>
               </div>
             </span>
           </div>
-          <div class="flex justify-between mb-2 text-gray-200">
-            <span>Vehicle Rate</span>
-            <span>${{selectedCarData.rate}}/day</span>
+          <div class="flex justify-between text-gray-200">
+            <span class="font-bold text-sm uppercase tracking-wider text-gray-400">Vehicle Rate</span>
+            <span>${{selectedCarData.class_id.rent_charge}}/day</span>
           </div>
-          <div class="flex justify-between mb-2 text-gray-200">
-            <span>Subtotal</span>
-            <span>$19.99</span>
+          <div class="flex justify-between text-gray-200">
+            <span class="font-bold text-sm uppercase tracking-wider text-gray-400">Subtotal</span>
+            <span>${{pricing.subtotal | number: '1.2-2'}}</span>
           </div>
-          <div class="flex justify-between mb-2 text-gray-200">
-            <span>Taxes</span>
+          <div class="flex justify-between mb-1 text-gray-200">
+            <span class="font-bold text-sm uppercase tracking-wider text-gray-400">Taxes</span>
             <span>$1.99</span>
           </div>
           <div *ngIf = "pricing.coupon != null" class="flex justify-between mb-2 text-gray-200">
@@ -249,8 +205,8 @@
           </div>
           <hr class="my-2">
           <div class="flex justify-between mb-2 text-gray-200">
-            <span class="font-semibold">Estimated Total</span>
-            <span class="font-semibold">${{pricing.finalPrice | number: '1.2-2'}}</span>
+            <span class="font-bold text-sm uppercase tracking-wider text-gray-400">Estimated Total</span>
+            <span class="font-semibold tracking-wider">${{pricing.finalPrice | number: '1.2-2'}}</span>
           </div>
           <button (click)="openConfirmOrder()"
             class="bg-emerald-500 text-white py-2 px-4 rounded-lg mt-4 w-full hover:bg-emerald-600">Confirm

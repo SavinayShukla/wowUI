@@ -19,6 +19,6 @@ export class ResultcardComponent {
   
   onButtonClick() {
     this.sharedService.updateResultCardData(this.resultData);
-    this.buttonClick.emit("Something");
+    this.buttonClick.emit(this.resultData);
   }
 }

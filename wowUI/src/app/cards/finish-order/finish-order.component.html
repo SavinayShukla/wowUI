@@ -4,10 +4,9 @@
             <div class="px-1">
                 <i class="fa-solid fa-check-to-slot fa-fade fa-lg" style="color: #f9d806;"></i>
             </div>
-            <h3 class="px-1 text-2xl leading-6 font-bold tracking-wide text-gray-200" id="modal-title">Complete Ride
-            </h3>
+            <h3 class="px-1 text-2xl uppercase font-bold tracking-wide text-gray-200" id="modal-title">Complete Ride </h3>
         </div>
-        <div class="mt-2">
+        <!-- <div class="mt-2">
             <div class="mt-3">
                 <div class="mt-2">
                     <div class="flex justify-between mb-4 mt-4">
@@ -15,18 +14,18 @@
                             <div>
                                 <h1 class="mb-1 font-semibold text-xs tracking-wider uppercase text-gray-400">Pickup
                                     Location</h1>
-                                <p class="font-semibold text-sm text-gray-200">544 Bayride Parkway</p>
-                                <p class="font-semibold text-sm text-gray-200">Brooklyn, NY</p>
-                                <p class="font-semibold text-sm text-gray-200">11209</p>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.pickup_location.address_street}}</p>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.pickup_location.address_city}}, {{selectedBooking.pickup_location.address_state}}</p>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.pickup_location.address_zipcode}}</p>
                             </div>
                         </span>
                         <span>
                             <div class="text-end">
                                 <h1 class="mb-1 font-semibold text-xs tracking-wider uppercase text-gray-400">Dropoff
                                     Location</h1>
-                                <p class="font-semibold text-sm text-gray-200">544 Bayride Parkway</p>
-                                <p class="font-semibold text-sm text-gray-200">Brooklyn, NY</p>
-                                <p class="font-semibold text-sm text-gray-200">11209</p>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.dropoff_location.address_street}}</p>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.dropoff_location.address_city}}, {{selectedBooking.dropoff_location.address_state}}</p>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.dropoff_location.address_zipcode}}</p>
                             </div>
                         </span>
                     </div>
@@ -34,13 +33,13 @@
                         <span>
                             <div>
                                 <h1 class="mb-1 font-semibold text-xs tracking-wider uppercase text-gray-400">Pickup Date</h1>
-                                <p class="font-semibold text-sm text-gray-200">MM/DD/YYYY</p>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.pickup_date}}</p>
                             </div>
                         </span>
                         <span>
                             <div class="text-end">
                                 <h1 class="mb-1 font-semibold text-xs tracking-wider uppercase text-gray-400">Dropoff Date</h1>
-                                <p class="font-semibold text-sm text-gray-200">MM/DD/YYYY</p>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.dropoff_date}}</p>
                             </div>
                         </span>
                     </div>
@@ -53,7 +52,7 @@
                         </span>
                         <span>
                             <div>
-                                <h1 class="text-md text-gray-200">4600</h1>
+                                <h1 class="text-md text-gray-200">{{selectedBooking.start_odo}}</h1>
                             </div>
                         </span>
                     </div><div class="flex justify-between mb-1 mt-1">
@@ -65,7 +64,17 @@
                         </span>
                         <span>
                             <div>
-                                <h1 class="text-md text-gray-200">4900</h1>
+                                <input type="text"
+                                    placeholder="End Odometer"
+                                    class="w-full p-2 text-end
+                                    border-gray-400
+                                    disabled:opacity-30
+                                    uppercase
+                                    tracking-wider font-bold
+                                    placeholder:text-xss
+                                    text-xs rounded-md
+                                    bg-secondary text-gray-300
+                                    focus:outline-none">
                             </div>
                         </span>
                     </div>
@@ -78,7 +87,7 @@
                         </span>
                         <span>
                             <div>
-                                <h1 class="text-md text-gray-200">300</h1>
+                                <h1 class="text-md text-gray-200">{{selectedBooking.end_odo - selectedBooking.start_odo}}</h1>
                             </div>
                         </span>
                     </div>
@@ -91,7 +100,7 @@
                         </span>
                         <span>
                             <div>
-                                <h1 class="text-md text-gray-200">$80/day</h1>
+                                <h1 class="text-md text-gray-200">${{selectedBooking.vehicle_id.class_id.rent_charge}}/day</h1>
                             </div>
                         </span>
                     </div>
@@ -116,13 +125,72 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+        <div class="mt-2">
+            <div class="mt-3">
+                <div class="mt-2">
+                    <div class="flex justify-between mb-4 mt-4">
+                        <span>
+                            <div>
+                                <h1 class="mb-1 font-semibold text-xs tracking-wider uppercase text-gray-400">Pickup
+                                    Location</h1>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.pickup_location.address_street}}</p>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.pickup_location.address_city}}, {{selectedBooking.pickup_location.address_state}}</p>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.pickup_location.address_zipcode}}</p>
+                            </div>
+                        </span>
+                        <span>
+                            <div class="text-end">
+                                <h1 class="mb-1 font-semibold text-xs tracking-wider uppercase text-gray-400">Dropoff
+                                    Location</h1>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.dropoff_location.address_street}}</p>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.dropoff_location.address_city}}, {{selectedBooking.dropoff_location.address_state}}</p>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.dropoff_location.address_zipcode}}</p>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="flex flex-col items-center justify-evenly mb-4 mt-4">
+                        <span>
+                            <div class="flex flex-col items-center">
+                                <h1 class="font-semibold text-sm uppercase tracking-wider uppercase text-emerald-400">
+                                    {{selectedBooking.vehicle_id.make}}</h1>
+                                <p class="font-semibold text-xl text-gray-200">{{selectedBooking.vehicle_id.model}} {{selectedBooking.vehicle_id.make_year | slice:0:4}}</p>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.vehicle_id.class_id.vehicle_class}}</p>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="flex justify-between mb-4 mt-4">
+                        <span>
+                            <div>
+                                <h1 class="mb-1 font-semibold text-xs tracking-wider uppercase text-gray-400">Pickup Date</h1>
+                                <p class="font-semibold text-sm text-gray-200">{{selectedBooking.pickup_date}}</p>
+                            </div>
+                        </span>
+                        <span>
+                            <div class="text-end">
+                                <h1 class="mb-1 font-semibold text-xs tracking-wider uppercase text-gray-400">Vehicle Rate</h1>
+                                <p class="font-semibold text-sm text-gray-200">${{selectedBooking.vehicle_id.class_id.rent_charge}}/day</p>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="mt-3 mb-2 flex justify-center items-center">
+                        <div class="flex flex-col items-center">
+                            <p class="text-xs italic font-bold text-gray-500">*Your saved payment method will be used for this transaction.</p>
+                            <h1 class="font-bold uppercase tracking-widest text-gray-400 text-xs mt-2 ">
+                                Are you sure you want to finish this ride?
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="bg-gray/100 bg-secondary bg-opacity-50 px-4 py-2 sm:flex sm:flex-row-reverse sm:px-6">
-        <button type="button"
-            class="bg-emerald-700 text-gray-100 rounded-lg hover:shadow-lg hover:shadow-emerald-600/10 hover:bg-emerald-500 transition-all duration-300 ease-in-out px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-500 sm:ml-3 sm:w-auto">Let's
-            Go!</button>
-        <button type="button"
-            class="mt-3 inline-flex w-full justify-center rounded-md bg-primary px-3 py-2 text-sm font-medium text-gray-200 shadow-sm ring-1 ring-inset ring-emerald-500 hover:bg-secondary sm:mt-0 sm:w-auto">Cancel</button>
-    </div>
+   
+    <mat-dialog-actions align="end">
+        <button class="bg-primary-700 text-gray-100 rounded-lg 
+                   transition-all duration-300 ease-in-out px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-800 sm:ml-3 sm:w-auto" mat-dialog-close>Cancel</button>
+        <button class="bg-primary text-gray-100 
+        rounded-lg
+        transition-all duration-300 ease-in-out px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-500 sm:ml-3 sm:w-auto" [mat-dialog-close]="true" cdkFocusInitial>Yes I'm sure</button>
+    </mat-dialog-actions>
 </div>

@@ -7,23 +7,8 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class AutocompleteService {
-  private autocompleteService: google.maps.places.AutocompleteService;
 
-  constructor(private http: HttpClient) {
-    this.autocompleteService = new google.maps.places.AutocompleteService();
-  }
-
-  // getPlacePredictions(input: string): Promise<google.maps.places.AutocompletePrediction[]> {
-  //   return new Promise((resolve, reject) => {
-  //     this.autocompleteService.getPlacePredictions({ input }, (predictions, status) => {
-  //       if (status === google.maps.places.PlacesServiceStatus.OK) {
-  //         resolve(predictions || []);
-  //       } else {
-  //         reject(status);
-  //       }
-  //     });
-  //   });
-  // }
+  constructor(private http: HttpClient) { }
 
   getPlacePredictions(input: string): Observable<any> {
     const apiUrl = `${environment.host}/vehicle/office/?address_city=${input}`;
