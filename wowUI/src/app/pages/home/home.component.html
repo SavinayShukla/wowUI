@@ -1,13 +1,15 @@
 <div class="flex flex-col min-h-screen">
     <div class="flex flex-col justify-center items-center bg-primary text-white pt-32">
-        <section class="py-16">
+        <section class="pb-16 pt-8">
             <div class="container mx-auto text-center">
+                <div class="w-full flex flex-col items-center ">
+                    <span><img class="w-full rounded-2xl mb-12" src="assets/WOW.png" /></span>
+                </div>
                 <h1 class="text-4xl lg:text-6xl font-bold mb-4">Explore Your Ideal Ride</h1>
-                <p class="text-lg lg:text-xl text-gray-300 mb-8">Discover and reserve the finest cars for your next
+                <p class="text-sm uppercase tracking-widest font-bold text-gray-500 mb-12">Discover and reserve the finest cars for your next
                     journey!</p>
                 <div class="flex flex-col justify-center items-center max-w-full mx-auto">
                     <form [formGroup]="searchForm" (submit)="onSubmit()" class="flex flex-row sm:flex-row">
-
                         <!--PICKUP-->
                         <div class="w-full mx-2 mb-4 sm:mb-0">
                             <input type="text" (input)="onInput($event, 'pickupLoc')"

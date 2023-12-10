@@ -5,8 +5,12 @@
   </div>
   <div class="flex items-start">
     <p *ngIf="!loading && searchDetails && searchDetails.intercity" 
-        class="text-emerald-600 text-md p-2 font-medium">
-        {{searchDetails.pickupLoc}} to {{searchDetails.dropoffLoc}} Between {{searchDetails.pickup_date}} to {{searchDetails.dropoff_date}}</p>
+        class="text-md p-2 text-gray-200">
+        <span class="font-bold uppercase tracking-wide text-emerald-600 ">From: </span>{{searchDetails.pickupLoc}}
+        <span class="font-bold uppercase tracking-wide text-emerald-600 ">&nbsp;To: </span>{{searchDetails.dropoffLoc}}
+        <span class="font-bold uppercase tracking-wide text-emerald-600 ">&nbsp; Between: </span>{{searchDetails.pickup_date}}
+        <span class="font-bold tracking-wide text-emerald-600 "> to </span>
+         {{searchDetails.dropoff_date}}</p>
     <p *ngIf="!loading && searchDetails && !searchDetails.intercity" 
         class="text-md p-2 text-gray-200">
         <span class="font-bold uppercase tracking-wide text-emerald-600 ">From: </span>{{searchDetails.pickupLoc}}
