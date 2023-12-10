@@ -12,14 +12,6 @@ export class AutocompleteService {
 
   getPlacePredictions(input: string): Observable<any> {
     const apiUrl = `${environment.host}/vehicle/office/?address_city=${input}`;
-
-    // return this.http.get(apiUrl).pipe(
-    //   map((response: any) => response), // Adjust this based on the API response structure
-    //   catchError((error) => {
-    //     console.error('Error fetching office locations:', error);
-    //     return [];
-    //   })
-    // );
     return this.http.get(apiUrl);
   }
 }

@@ -2,18 +2,19 @@
     <mat-expansion-panel-header class="w-full p-2 bg-secondary">
         <mat-panel-title class="flex flex-row items-center justify-center">
             <h1 class="font-bold tracking-wider uppercase text-sm text-gray-400">Order # </h1>
-            <p class="px-2 text-sm font-bold tracking-wide text-gray-200">1231245532423</p>
+            <p class="px-2 text-sm font-bold tracking-wide text-gray-200">{{orderData.booking_id}}</p>
         </mat-panel-title>
         <mat-panel-description class="flex flex-row">
             <h1 class="font-bold tracking-wider uppercase text-sm text-emerald-400">Completed On: </h1>
-            <p class="px-2 text-sm font-bold tracking-wide text-gray-200">10/12/2022</p>
+            <p class="px-2 text-sm font-bold tracking-wide text-gray-200">{{pricingInfo.pay_date}}</p>
         </mat-panel-description>
     </mat-expansion-panel-header>
     <div class="grid grid-cols-6 w-full">
+        <!-- ----  CAR INFO ---- -->
         <div class="p-2 col-span-2 flex flex-col items-center justify-center">
-            <div class="text-emerald-500 uppercase text-sm tracking-wider font-bold">Mercedes</div>
-            <div class="text-gray-200 font-bold text-xl">SLS-300 2023</div>
-            <div class="text-emerald-600 text-sm">Luxury Sedan</div>
+            <div class="text-emerald-500 uppercase text-sm tracking-wider font-bold">{{orderData.vehicle_id.make}}</div>
+            <div class="text-gray-200 font-bold text-xl">{{orderData.vehicle_id.model}} {{orderData.vehicle_id.make_year | slice:0:4}}</div>
+            <div class="text-emerald-600 text-sm">{{orderData.vehicle_id.class_id.vehicle_class}}</div>
             <div class="py-2 flex flex-row">
                 <span
                     class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Comfortable</span>
@@ -22,20 +23,83 @@
                 <span class="bg-teal-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Popular</span>
             </div>
         </div>
-        <div class="p-2 col-span-2 flex flex-col items-start justify-center">
-            <div class="text-gray-400 text-xs font-bold uppercase tracking-wider">Payment Method</div>
-            <div class="text-gray-200 text-sm">**********1799</div>
-            <div class="text-emerald-500 text-sm">Coupon Applied</div>
+
+        <!-- ----   PERSONAL INFO ---- -->
+        <div class="pl-3 pr-8 col-span-2 flex flex-row items-center justify-between">
+            <div class="w-full flex flex-col items-start justify-center">
+                <div class="text-gray-400 text-xs font-bold uppercase tracking-wider">Payment Method</div>
+                <!-- {{ '************' + (card.card_number | slice:-4) }} -->
+                <div *ngIf = 'orderData.payment.length > 1' class="text-gray-200 mt-1 font-bold text-sm">Multiple Cards</div>
+                <div *ngIf = 'orderData.payment.length == 1' class="text-gray-200 mt-1 font-bold tracking-wider text-sm">{{ '************' + (orderData.payment[0].card_number | slice:-4) }}</div>
+                <div *ngIf = 'orderData.coupon_id != null' class="text-emerald-500 font-bold text-xs tracking-wider uppercase">Coupon Applied</div>
+            </div>
+            <div class="w-full flex flex-col items-end justify-between">
+                <div class="text-end mb-8">
+                    <div class="text-gray-400 text-xs font-bold uppercase tracking-wider">Billing Address</div>
+                    <div class="text-gray-200 mt-1 font-bold text-xl uppercase tracking-wider">{{user.first_name}} {{user.last_name}}</div>
+                    <div class="text-gray-300 mt-1 font-bold text-sm">{{user.address_street}}</div>
+                    <div class="text-gray-300 mt-1 font-bold text-sm">{{user.address_city}}, {{user.address_state}}</div>
+                    <div class="text-gray-300 mt-1 font-bold text-sm">{{user.address_zipcode}}</div>
+                </div>
+                <div class="text-end">
+                    <div class="text-gray-400 text-xs font-bold uppercase tracking-wider">Shipping Address</div>
+                    <div class="text-gray-200 mt-1 font-bold text-sm">{{orderData.dropoff_location.address_street}}</div>
+                    <div class="text-gray-200 mt-1 font-bold text-sm">{{orderData.dropoff_location.address_city}}, {{orderData.dropoff_location.address_state}}</div>
+                    <div class="text-gray-200 mt-1 font-bold text-sm">{{orderData.dropoff_location.address_zipcode}}</div>
+                </div>
+            </div>
         </div>
-        <div class="p-2 col-span-2 flex flex-col items-center justify-center">
-            <h1 class="text-2xl text-emerald-500 font-semibold">$31.00</h1>
+
+        <!-- ----   PRICING INFO ---- -->
+        <div class="p-2 col-span-2 flex flex-col items-center justify-center border-l border-zinc-700">
             <div class="p-1 flex flex-row items-center justify-end">
                 <i class="fa-solid fa-circle-check" style="color: #18cd70;"></i>
                 <p class="px-2 text-emerald-400 text-sm font-bold uppercase tracking-wider">Completed</p>
             </div>
+            <div class="py-4 px-16 w-full flex flex-col">
+                <div class="flex justify-between mb-1">
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-gray-400">Start Odometer (mi)</h1></span>
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-gray-400">{{pricingInfo.start_odo}} </h1></span>
+                </div>
+                <div class="flex justify-between mb-1">
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-gray-400">End Odometer (mi)</h1></span>
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-gray-400">{{pricingInfo.end_odo}}</h1></span>
+                </div>
+                <div class="flex justify-between mb-1">
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-gray-400">Total Miles</h1></span>
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-gray-400">{{pricingInfo.miles}}</h1></span>
+                </div>
+                <div class="flex justify-between mb-1">
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-gray-400">Vehicle Rate</h1></span>
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-gray-400">${{pricingInfo.vehicle_rate | number: '1.2-2'}}/day</h1></span>
+                </div>
+                <div *ngIf = 'pricingInfo.extra_charge != 0' class="flex justify-between mb-1">
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-amber-200">Extra Rate</h1></span>
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-amber-200">${{pricingInfo.extra_rate | number: '1.2-2'}}</h1></span>
+                </div>
+                <div *ngIf = 'pricingInfo.extra_charge != 0' class="flex justify-between mb-1">
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-amber-200">Extra Charge</h1></span>
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-amber-200">${{pricingInfo.extra_charge | number: '1.2-2'}}</h1></span>
+                </div>
+                <div class="flex justify-between mb-1">
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-gray-400">Subtotal</h1></span>
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-gray-400">${{pricingInfo.subtotal | number: '1.2-2'}}</h1></span>
+                </div>
+                <div class="flex justify-between mb-1">
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-gray-400">Taxes</h1></span>
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-gray-400">${{pricingInfo.taxes | number: '1.2-2'}}</h1></span>
+                </div>
+                <div class="flex justify-between mb-1">
+                    <span class="w-full"><hr class="w-full h-px my-2 border-0 dark:bg-secondary"></span>
+                </div>
+                <div class="flex justify-between mb-1">
+                    <span><h1 class="font-semibold text-lg tracking-wider uppercase text-gray-400">Grand Total</h1></span>
+                    <span><h1 class="text-2xl text-emerald-500 font-semibold">${{pricingInfo.grand_total | number: '1.2-2'}}</h1></span>
+                </div>
+            </div>
             <div class="p-1 flex flex-row items-center justify-end">
-                <p class="text-emerald-500">Paid On:</p>
-                <p class="px-2 text-gray-200">12/29/2023</p>
+                <p class="font-bold tracking-wider uppercase text-sm text-emerald-400">Paid On:</p>
+                <p class="px-2 text-sm font-bold tracking-wide text-gray-200">{{pricingInfo.pay_date}}</p>
             </div>
         </div>
     </div>

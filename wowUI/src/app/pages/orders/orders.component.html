@@ -55,6 +55,12 @@
             <comp-order class="w-full"></comp-order> -->
           </mat-accordion>
         </div>
+        <div *ngIf = 'completedOrders && completedOrders.length == 0' class="mx-8 flex flex-col items-center justify-center">
+          <div class="w-full h-40 flex flex-col items-center justify-center rounded-3xl bg-primary border border-zinc-800">
+            <span><i class="fa-solid fa-face-sad-tear fa-2xl" style="color: #3f3f42;"></i></span>
+            <div class="font-bold text-zinc-600 uppercase tracking-widest mt-4">- You have no historical orders -</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
