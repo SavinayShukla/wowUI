@@ -10,9 +10,13 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { cardSelectedGuardGuard } from './guards/card-selected-guard.guard';
 import { authGuard } from './guards/auth.guard';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NewPasswordComponent } from './pages/new-password/new-password.component';
+import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'any', component: NotFoundComponent, pathMatch: 'full'},
     {
         path: 'home', component: HomeComponent,
         children: [{ path: '', component: FeatureComponent, pathMatch: 'full' },
@@ -26,5 +30,9 @@ export const routes: Routes = [
     },
     { path: 'login', component: LoginComponent, pathMatch: 'full' },
     { path: 'logout', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'register', component: RegisterComponent, pathMatch: 'full' }
+    { path: 'register', component: RegisterComponent, pathMatch: 'full' },
+    { path: 'verify', component: VerifyEmailComponent, pathMatch: 'full' },
+    { path: 'new-password', component: NewPasswordComponent, pathMatch: 'full' },
+    { path: '**', redirectTo: 'any' }
+    
 ];

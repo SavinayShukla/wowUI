@@ -33,14 +33,15 @@ export class CompOrdersComponent implements OnInit {
     const startMoment = moment(this.orderData.pickup_date);
     const endMoment = moment(this.orderData.dropoff_date);
     var days  = endMoment.diff(startMoment, 'days') + 1;
+    
+    let daily_charge = days * vehicle_rate;
+    let extra_charge = ((miles > days * daily_limit) ? (miles - (days * daily_limit)) * extra_rate : 0.00);
 
     //Taxes
-    const taxes = 1.99;
-    
-    let subtotal = days * vehicle_rate;
-    let extra_charge = ((miles > daily_limit) ? (miles - daily_limit) * extra_rate : 0.00)
-    const grand_total = subtotal + extra_charge + taxes;
+    const subtotal = daily_charge + extra_charge;
+    const grand_total = daily_charge + extra_charge + (0.18 * subtotal);
     const pay_date = moment(this.orderData.dropoff_date).format("MM/DD/YYYY");
+    const pickup_date = moment(this.orderData.pickup_date).format("MM/DD/YYYY");
     const order_number = this.orderData.booking_id;
     const isMultipleCards = (this.orderData.payment.length > 1)
     // const discount = (this.orderData.coupoon_id == null ? null : discount)
@@ -52,11 +53,12 @@ export class CompOrdersComponent implements OnInit {
       miles: miles,
       vehicle_rate: vehicle_rate,
       extra_rate: extra_rate,
-      taxes: taxes,
+      taxes: (0.18 * subtotal),
       subtotal: subtotal,
       extra_charge: extra_charge,
       grand_total: grand_total,
       pay_date: pay_date,
+      pick_date: pickup_date,
       order_number: order_number,
       isMultipleCards : isMultipleCards
     }

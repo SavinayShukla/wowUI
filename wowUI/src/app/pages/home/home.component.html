@@ -5,103 +5,111 @@
                 <div class="w-full flex flex-col items-center ">
                     <span><img class="w-full rounded-2xl mb-12" src="assets/WOW.png" /></span>
                 </div>
-                <h1 class="text-4xl lg:text-6xl font-bold mb-4">Explore Your Ideal Ride</h1>
-                <p class="text-sm uppercase tracking-widest font-bold text-gray-500 mb-12">Discover and reserve the finest cars for your next
-                    journey!</p>
-                <div class="flex flex-col justify-center items-center max-w-full mx-auto">
-                    <form [formGroup]="searchForm" (submit)="onSubmit()" class="flex flex-row sm:flex-row">
-                        <!--PICKUP-->
-                        <div class="w-full mx-2 mb-4 sm:mb-0">
-                            <input type="text" (input)="onInput($event, 'pickupLoc')"
-                                placeholder="Pickup Location" formControlName='pickupLoc'
-                                class="w-full p-4 border
+                <div>
+                    <h1 class="text-4xl lg:text-6xl font-bold mb-4">Explore Your Ideal Ride</h1>
+                    <p class="text-sm uppercase tracking-widest font-bold text-gray-500 mb-12">Discover and reserve the
+                        finest cars for your next
+                        journey!</p>
+                    <div class="flex flex-col justify-center items-center max-w-full mx-auto">
+                        <form [formGroup]="searchForm" (submit)="onSubmit()" class="flex flex-row sm:flex-row">
+                            <!--PICKUP-->
+                            <div class="w-full mx-2 mb-4 sm:mb-0">
+                                <input type="text" (input)="onInput($event, 'pickupLoc')" placeholder="Pickup Location"
+                                    formControlName='pickupLoc'
+                                    class="w-full p-4 border
                                 {{ searchForm.get('pickupLoc')?.invalid && 
                               (searchForm.get('pickupLoc')?.dirty || searchForm.get('pickupLoc')?.touched) 
                               ? 'border-red-400 animate-pulse placeholder-red-400' : 'border-gray-500' }}
                                 tracking-wider font-bold placeholder:uppercase text-sm rounded-md bg-secondary text-gray-300 focus:outline-none">
-                            <div *ngIf="pickupPredictions && pickupPredictions.length"
-                                class="absolute divide-y divide-gray-500 my-1 rounded-md p-2 w-max z-50 bg-secondary backdrop-blur-sm bg-gray/90">
-                                <ul>
-                                    <li *ngFor="let prediction of pickupPredictions" (click) = "selectPrediction(prediction,'pickup')">
-                                        <div
-                                            class="flex flex-col items-start px-2 py-2 rounded-md justify-center w-full hover:bg-primary">
-                                            <span class="text-sm uppercase tracking-wide font-bold text-gray-200">{{
-                                                prediction.address_street }}, {{ prediction.address_city }}</span>
-                                            <span class="text-xs font-bold text-gray-500 tracking-wider uppercase">{{
-                                                prediction.address_state }} - {{prediction.address_zipcode}}</span>
-                                        </div>
-                                    </li>
-                                </ul>
+                                <div *ngIf="pickupPredictions && pickupPredictions.length"
+                                    class="absolute divide-y divide-gray-500 my-1 rounded-md p-2 w-max z-50 bg-secondary backdrop-blur-sm bg-gray/90">
+                                    <ul>
+                                        <li *ngFor="let prediction of pickupPredictions"
+                                            (click)="selectPrediction(prediction,'pickup')">
+                                            <div
+                                                class="flex flex-col items-start px-2 py-2 rounded-md justify-center w-full hover:bg-primary">
+                                                <span class="text-sm uppercase tracking-wide font-bold text-gray-200">{{
+                                                    prediction.address_street }}, {{ prediction.address_city }}</span>
+                                                <span
+                                                    class="text-xs font-bold text-gray-500 tracking-wider uppercase">{{
+                                                    prediction.address_state }} - {{prediction.address_zipcode}}</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
 
-                        <!--DROPOFF-->
-                        <div class="w-full mx-2 mb-4 sm:mb-0">
-                            <input type="text" (input)="onInput($event, 'dropoffLoc')" formControlName='dropoffLoc'
-                                placeholder="Dropoff Location"
-                                class="w-full p-4 border
+                            <!--DROPOFF-->
+                            <div class="w-full mx-2 mb-4 sm:mb-0">
+                                <input type="text" (input)="onInput($event, 'dropoffLoc')" formControlName='dropoffLoc'
+                                    placeholder="Dropoff Location"
+                                    class="w-full p-4 border
                                 {{ searchForm.get('dropoffLoc')?.invalid && 
                                 (searchForm.get('dropoffLoc')?.dirty || searchForm.get('dropoffLoc')?.touched) 
                               ? 'border-red-400 animate-pulse placeholder-red-400' : 'border-gray-500' }}
                                 tracking-wider font-bold disabled:opacity-30 placeholder:uppercase text-sm rounded-md bg-secondary text-gray-300 focus:outline-none">
 
-                            <div *ngIf="searchForm.get('intercity')?.value && dropoffPredictions && dropoffPredictions.length"
-                                class="absolute divide-y divide-gray-500 my-1 rounded-md p-2 w-max z-50 bg-secondary backdrop-blur-sm bg-gray/90">
-                                <ul>
-                                    <li *ngFor="let prediction of dropoffPredictions" (click) = "selectPrediction(prediction,'dropoff')">
-                                        <div
-                                            class="flex flex-col items-start px-2 py-2 rounded-md justify-center w-full hover:bg-primary">
-                                            <span class="text-sm uppercase tracking-wide font-bold text-gray-200">{{
-                                                prediction.address_street }}, {{ prediction.address_city }}</span>
-                                            <span class="text-xs font-bold text-gray-500 tracking-wider uppercase">{{
-                                                prediction.address_state }} - {{prediction.address_zipcode}}</span>
-                                        </div>
-                                    </li>
-                                </ul>
+                                <div *ngIf="searchForm.get('intercity')?.value && dropoffPredictions && dropoffPredictions.length"
+                                    class="absolute divide-y divide-gray-500 my-1 rounded-md p-2 w-max z-50 bg-secondary backdrop-blur-sm bg-gray/90">
+                                    <ul>
+                                        <li *ngFor="let prediction of dropoffPredictions"
+                                            (click)="selectPrediction(prediction,'dropoff')">
+                                            <div
+                                                class="flex flex-col items-start px-2 py-2 rounded-md justify-center w-full hover:bg-primary">
+                                                <span class="text-sm uppercase tracking-wide font-bold text-gray-200">{{
+                                                    prediction.address_street }}, {{ prediction.address_city }}</span>
+                                                <span
+                                                    class="text-xs font-bold text-gray-500 tracking-wider uppercase">{{
+                                                    prediction.address_state }} - {{prediction.address_zipcode}}</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <mat-checkbox formControlName="intercity"><span
+                                        class="text-xs font-bold uppercase tracking-wider text-gray-500 hidden sm:inline">Intercity?</span></mat-checkbox>
                             </div>
-                            <mat-checkbox formControlName="intercity"><span
-                                    class="text-xs font-bold uppercase tracking-wider text-gray-500 hidden sm:inline">Intercity?</span></mat-checkbox>
-                        </div>
 
-                        <!--PICKDATE-->
-                        <div class="w-3/4 mx-2 mb-4 sm:mb-0">
-                            <div class="flex flex-row border transition-all ease-in-out duration-300 
+                            <!--PICKDATE-->
+                            <div class="w-3/4 mx-2 mb-4 sm:mb-0">
+                                <div class="flex flex-row border transition-all ease-in-out duration-300 
                             {{ searchForm.get('pickupDate')?.invalid && 
                               (searchForm.get('pickupDate')?.dirty || searchForm.get('pickupDate')?.touched) 
                               ? 'border-red-400 animate-pulse' : 'border-gray-500' }}
                             bg-secondary rounded-md bg-secondary text-gray-300">
-                                <input matInput placeholder="Pickup Date" formControlName='pickupDate'
-                                    [matDatepicker]="pickupPicker"
-                                    class="w-full ml-1 p-4 
+                                    <input matInput placeholder="Pickup Date" formControlName='pickupDate'
+                                        [matDatepicker]="pickupPicker"
+                                        class="w-full ml-1 p-4 
                                     {{ searchForm.get('pickupDate')?.invalid && 
                                     (searchForm.get('pickupDate')?.dirty || searchForm.get('pickupDate')?.touched) 
                                     ? 'placeholder-red-400' : '' }}
                                     bg-secondary font-bold placeholder:uppercase text-sm text-gray-300 focus:outline-none">
-                                <mat-datepicker-toggle matIconSuffix [for]="pickupPicker"></mat-datepicker-toggle>
-                                <mat-datepicker #pickupPicker></mat-datepicker>
+                                    <mat-datepicker-toggle matIconSuffix [for]="pickupPicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickupPicker></mat-datepicker>
+                                </div>
                             </div>
-                        </div>
 
-                        <!--DROPDATE-->
-                        <div class="w-3/4 mx-2 mb-4 sm:mb-0">
-                            <div class="flex flex-row border transition-all ease-in-out duration-300 
+                            <!--DROPDATE-->
+                            <div class="w-3/4 mx-2 mb-4 sm:mb-0">
+                                <div class="flex flex-row border transition-all ease-in-out duration-300 
                             {{ searchForm.get('dropoffDate')?.invalid && 
                               (searchForm.get('dropoffDate')?.dirty || searchForm.get('dropoffDate')?.touched) 
                               ? 'border-red-400 animate-pulse' : 'border-gray-500' }}
                               bg-secondary rounded-md bg-secondary text-gray-300">
-                                <input matInput placeholder="Dropoff Date" formControlName='dropoffDate'
-                                    [matDatepicker]="dropoffPicker"
-                                    class="w-full ml-1 p-4 
+                                    <input matInput placeholder="Dropoff Date" formControlName='dropoffDate'
+                                        [matDatepicker]="dropoffPicker"
+                                        class="w-full ml-1 p-4 
                                     {{ searchForm.get('dropoffDate')?.invalid && 
                                     (searchForm.get('dropoffDate')?.dirty || searchForm.get('dropoffDate')?.touched) 
                                     ? 'placeholder-red-400' : '' }}
                                     bg-secondary font-bold placeholder:uppercase text-sm text-gray-300 focus:outline-none">
-                                <mat-datepicker-toggle matIconSuffix [for]="dropoffPicker"></mat-datepicker-toggle>
-                                <mat-datepicker #dropoffPicker></mat-datepicker>
+                                    <mat-datepicker-toggle matIconSuffix [for]="dropoffPicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #dropoffPicker></mat-datepicker>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mx-2 mb-4 sm:mb-0">
-                            <button [disabled]="!searchForm.valid" class="bg-emerald-600 
+
+                            <!--BUTTON-->
+                            <div class="mx-2 mb-4 sm:mb-0">
+                                <button [disabled]="!searchForm.valid" class="bg-emerald-600 
                                 disabled:bg-secondary
                                 disabled:text-gray-600
                                 text-gray-100 px-3 py-4 rounded-lg
@@ -111,10 +119,13 @@
                                 enabled:hover:shadow-emerald-600/10
                                 enabled:hover:text-gray-200 
                                 enabled:hover:bg-emerald-500 transition-all duration-300 ease-in-out">Search</button>
-                        </div>
-                    </form>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+
             </div>
         </section>
     </div>
     <router-outlet></router-outlet>
+</div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -11,10 +11,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  
-  constructor(public authService: AuthService){}
-  ngOnInit(){
-    console.log("Something");
-  }
-  
+
+  constructor(public authService: AuthService){ }
+
 }

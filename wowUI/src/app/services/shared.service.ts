@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import moment from 'moment';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { AuthService } from './auth.service';
+import { BookingService } from './booking.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,7 @@ export class SharedService {
   private resultSubject = new BehaviorSubject<any[]>([]);
   results$ = this.resultSubject.asObservable();
   
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient) { }
   
   updateResultCardData(newResultCard: any) {
     this.searchCardSubject.next(newResultCard);
@@ -43,8 +43,8 @@ export class SharedService {
     const startMoment = moment(new Date(this.searchSubject.value.pickupDate));
     const endMoment = moment(new Date( this.searchSubject.value.dropoffDate));
     var days  = endMoment.diff(startMoment, 'days') + 1;
-    var taxes = 1.99;
     const subtotal = (basePrice * days);
+    var taxes = 0.18 * subtotal;
     const totalPrice = subtotal + taxes;
     this.pricingSubject.next({subtotal : subtotal,
                               finalPrice : totalPrice,
@@ -59,7 +59,7 @@ export class SharedService {
 
   applyCoupon(percent:number):any{
     var prevPrice = this.pricingSubject.value.originalPrice;
-    const newPrice = prevPrice * (1- percent);
+    const newPrice = prevPrice * (1 - percent);
     const couponDiscount = prevPrice - newPrice;
     this.pricingSubject.next({subtotal : this.pricingSubject.value.subtotal,
                               finalPrice : newPrice,
@@ -68,16 +68,7 @@ export class SharedService {
   }
 
   getVehicles(request : any): Observable<any> {
-    const token = this.authService.getAccessToken();
-    console.log(request);
-    if(token){
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      });
-      return this.http.post(this.getVehiclesURI, request, {headers});
-    }
-    return of(null);
+    return this.http.post(this.getVehiclesURI, request);
   }
 
 }

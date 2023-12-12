@@ -9,7 +9,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { AddpaymentComponent } from '../../cards/addpayment/addpayment.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookingService } from '../../services/booking.service';
 import { PopupService } from '../../services/alerts/popup.service';
 
@@ -17,7 +17,7 @@ import { PopupService } from '../../services/alerts/popup.service';
   selector: 'app-payment',
   standalone: true,
   imports: [CommonModule, MatSelectModule, MatRadioModule, MatCheckboxModule,
-    MatExpansionModule, ConfirmOrderComponent, MatBottomSheetModule],
+    MatExpansionModule, ConfirmOrderComponent, MatBottomSheetModule, ReactiveFormsModule],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css'
 })
@@ -88,7 +88,6 @@ export class PaymentComponent implements OnInit {
 
   openConfirmOrder(): void {
     if(this.confirmForm.get('payment_id')?.value.length > 0){
-      console.log(this.confirmForm.value);
       this.bookingService.updateFinalBooking(this.confirmForm.value);
       this._bottomSheet.open(ConfirmOrderComponent);
     }
@@ -119,9 +118,30 @@ export class PaymentComponent implements OnInit {
     }
   }
 
-  validateCoupon(): any{
-    this.sharedService.applyCoupon(0.4);
-    this.success = true;
+  validateCoupon(){
+    const couponRequest = {
+        coupon_code : this.confirmForm.get('coupon_code')?.value
+    };
+    this.bookingService.validateCoupon(couponRequest).subscribe((response)=>{
+      if(response){
+        console.log(response);
+        this.sharedService.applyCoupon(response.discount/100);
+        this.success = true;
+        this.popup.openSnackBar({
+          message : "Coupon Applied!",
+          status : 'success',
+          duration : 3000
+        });
+      }
+    },
+    (error)=>{
+      this.popup.openSnackBar({
+        message : error.error.message,
+        status : 'error',
+        duration : 3000
+      });
+    });
+    
     // this.confirmForm.patchValue({
     //   coupon_code: this.bookingData.booking_id,
     // });

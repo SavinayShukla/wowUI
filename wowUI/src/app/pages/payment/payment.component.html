@@ -52,7 +52,18 @@
                     {{metadata.individual_customer[0].dl_number}}
                   </h2>
                 </div>
-                <div class="w-full col-span-2">
+                <div *ngIf = 'metadata.individual_customer.length > 0' class="w-full col-span-2">
+                  <h2 class="text-xs tracking-widest uppercase px-2 font-bold text-gray-400">
+                    Insurance Company
+                  </h2>
+                  <h2 class="text-sm px-2 text-gray-200">
+                    {{metadata.individual_customer[0].insurance_company}}
+                  </h2>
+                  <h2 class="text-sm px-2 text-gray-200">
+                    Policy #: {{metadata.individual_customer[0].insurance_policy_no}}
+                  </h2>
+                </div>
+                <div *ngIf = 'metadata.corporate_customer.length > 0' class="w-full col-span-2">
                   <h2 class="text-xs tracking-widest uppercase px-2 font-bold text-gray-400">
                     Employee Information
                   </h2>
@@ -74,13 +85,13 @@
               <h2 class="text-sm text-emerald-300 mb-4">
                 Do you have any coupons from us?
               </h2>
-              <div class="grid grid-cols-1 gap-x-8 gap-y-2 mb-8">
+              <div [formGroup]="confirmForm" class="grid grid-cols-1 gap-x-8 gap-y-2 mb-8">
                 <div class="w-1/2 col-span-2">
                   <h2 class="text-xs tracking-widest p-2 text-gray-400 uppercase font-bold">
                     Coupon Code
                   </h2>
                   <input type="text" placeholder="Code" class="w-full px-4 py-3 rounded-lg font-medium bg-primary border border-gray-500 
-                    placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400">
+                    placeholder-gray-500 text-sm text-gray-200 focus:outline-none focus:border-emerald-400" formControlName='coupon_code'>
                   <button (click) = "validateCoupon()"
                     class="mt-4 disabled:bg-emerald-800 disabled:text-gray-400 shadow-2xl bg-emerald-600 text-white px-5 py-2 rounded-lg">Validate</button>
                   <i *ngIf = 'success' class="animate-pulse mx-4 fa-solid fa-circle-check fa-lg" style="color: #72da7e;"></i>
@@ -197,7 +208,7 @@
           </div>
           <div class="flex justify-between mb-1 text-gray-200">
             <span class="font-bold text-sm uppercase tracking-wider text-gray-400">Taxes</span>
-            <span>$1.99</span>
+            <span>${{0.18 * pricing.subtotal | number: '1.2-2'}}</span>
           </div>
           <div *ngIf = "pricing.coupon != null" class="flex justify-between mb-2 text-gray-200">
             <span class="text-red-300">Discount</span>

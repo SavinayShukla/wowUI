@@ -40,6 +40,7 @@ export class ProfileComponent implements OnInit {
       address_state: ['', [Validators.required]],
       address_city: ['', [Validators.required]],
       address_zipcode: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
     });
 
     this.corpInfoForm = this.fb.group({
@@ -67,7 +68,8 @@ export class ProfileComponent implements OnInit {
           address_street: this.staticInfo.address_street,
           address_state: this.staticInfo.address_state,
           address_city: this.staticInfo.address_city,
-          address_zipcode: this.staticInfo .address_zipcode,
+          address_zipcode: this.staticInfo.address_zipcode,
+          phone : this.staticInfo.phone
         });
 
       if (this.individual_customer.length != 0) {

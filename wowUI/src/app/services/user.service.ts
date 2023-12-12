@@ -15,6 +15,7 @@ export class UserService {
   private getProfileURI = `${environment.host}/user/profile/`;
   private userDetailsURI = `${environment.host}/swimlane/customer/`;
   private updatePasswordURI = `${environment.host}/user/password/`;
+  private forgotPasswordURI = `${environment.host}/user/forgot-password/`;
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -31,6 +32,10 @@ export class UserService {
         this.authService.login(accessToken);
       })
     );
+  }
+
+  forgotPassword(request: any): Observable<any> {
+    return this.http.post(this.forgotPasswordURI, request);
   }
 
   updateBasicInfo(user: any): Observable<any> {

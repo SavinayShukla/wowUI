@@ -63,7 +63,7 @@ export class ConfirmOrderComponent implements OnInit{
     (error)=>{
       this.loading = false;
       this.popup.openSnackBar({
-        message : "Error in Confirming Booking!",
+        message : error.error.message,
         status : 'error',
         duration : 3000
       });

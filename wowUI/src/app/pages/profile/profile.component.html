@@ -7,7 +7,7 @@
             <div class="bg-secondary sticky w-full col-span-1 rounded-lg shadow shadow-2xl">
                 <div class="grid grid-cols-1 gap-8">
                     <div class="m-10 flex flex-col items-center">
-                        <img class="bg-gray-200 rounded-full border shadow-xl w-3/4 p-4" src="assets/ava.png"
+                        <img class="bg-gray-200 rounded-full shadow-xl w-3/4 p-4" src="assets/ava.png"
                             alt="Profile Image">
                         <h1 class="text-3xl text-gray-300 uppercase font-bold pt-4">
                             {{staticInfo.first_name}} {{staticInfo.last_name}}
@@ -68,11 +68,17 @@
                                     class="text-sm font-bold tracking-wide text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
                                     placeholder="Your State" formControlName='address_state'>
                             </div>
-                            <div class="col-span-2">
+                            <div class="">
                                 <h1 class="text-emerald-500 uppercase text-sm font-bold">Zipcode</h1>
                                 <input
                                     class="text-sm font-bold tracking-wide text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
                                     placeholder="Your Zipcode" formControlName='address_zipcode'>
+                            </div>
+                            <div class="">
+                                <h1 class="text-emerald-500 uppercase text-sm font-bold">Phone</h1>
+                                <input
+                                    class="text-sm font-bold tracking-wide text-gray-300 bg-secondary focus:outline-none placeholder:font-bold"
+                                    placeholder="Your Zipcode" formControlName='phone'>
                             </div>
                             <div>
                                 <button class="mt-2 px-3 py-2 bg-emerald-800 tracking-wider text-xs uppercase font-bold text-gray-100 w-full rounded-md hover:shadow-lg 
@@ -143,7 +149,7 @@
                             <div>
                                 <button class="mt-2 px-3 py-2 bg-emerald-800 tracking-wider text-xs uppercase font-bold text-gray-100 w-full rounded-md hover:shadow-lg 
                                 hover:shadow-emerald-500/10 hover:bg-emerald-500 transition-all 
-                                duration-300 ease-in-out">Update Employee Info</button>
+                                duration-300 ease-in-out">Update Insurance Info</button>
                             </div>
                         </div>
                     </form>

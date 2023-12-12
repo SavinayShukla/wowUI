@@ -15,6 +15,7 @@ export class BookingService {
   private updateBookingURI = `${environment.host}/swimlane/booking/update/`;
   private getBookingsURI = `${environment.host}/swimlane/booking/`;
   private startRideURI = `${environment.host}/swimlane/booking/start/`;
+  private validateCouponURI = `${environment.host}/swimlane/coupon/validate/`;
   
   
   private bookingSubject = new BehaviorSubject<any[]>([]);
@@ -104,6 +105,18 @@ export class BookingService {
         Authorization: `Bearer ${token}`
       });
       return this.http.post(this.startRideURI, booking, {headers});
+    }
+    return of(null);
+  }
+
+  validateCoupon(coupon : any): Observable<any>{
+    const token = this.authService.getAccessToken();
+    if(token){
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      });
+      return this.http.post(this.validateCouponURI, coupon, {headers});
     }
     return of(null);
   }

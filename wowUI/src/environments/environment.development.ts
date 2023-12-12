@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    host: 'https://wowdb-api-onhsmaymgq-uc.a.run.app/api',
+    host: 'http://192.168.1.91:8000/api',
   };
   
