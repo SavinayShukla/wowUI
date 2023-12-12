@@ -13,6 +13,7 @@ import { authGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NewPasswordComponent } from './pages/new-password/new-password.component';
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
+import { profileGuardGuard } from './guards/profile-guard.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,7 +24,7 @@ export const routes: Routes = [
                    { path: 'results', component: ResultsComponent, pathMatch: 'full', 
                             children: [{ path: '', component: ResultcardComponent, pathMatch: 'full' }]},
 
-                   { path: 'payment', component: PaymentComponent, canActivate: [cardSelectedGuardGuard], pathMatch: 'full'},
+                   { path: 'payment', component: PaymentComponent, canActivate: [authGuard, profileGuardGuard, cardSelectedGuardGuard], pathMatch: 'full'},
                    { path: 'profile', component: ProfileComponent, canActivate: [authGuard], pathMatch: 'full'},
                    { path: 'orders', component: OrdersComponent, canActivate: [authGuard], pathMatch: 'full'}
                   ]

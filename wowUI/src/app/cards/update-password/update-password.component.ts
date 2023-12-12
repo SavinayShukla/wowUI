@@ -48,7 +48,7 @@ export class UpdatePasswordComponent {
         (error) => {
           this.loading = false;
           this.popup.openSnackBar({
-            message : "Error in updating password!",
+            message : error.error.message,
             status : 'error',
             duration : 3000
           });

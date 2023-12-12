@@ -5,6 +5,8 @@ import { ResultcardComponent } from '../../cards/resultcard/resultcard.component
 import { SharedService } from '../../services/shared.service';
 import { BookingService } from '../../services/booking.service';
 import moment from 'moment';
+import { AuthService } from '../../services/auth.service';
+import { PopupService } from '../../services/alerts/popup.service';
 
 @Component({
   selector: 'app-results',
@@ -20,7 +22,7 @@ export class ResultsComponent implements OnInit{
   loading: boolean = true;
   searchDetails : any;
 
-  constructor(private shared: SharedService, 
+  constructor(private shared: SharedService, private authService: AuthService, private popup: PopupService,
     private bookingService: BookingService, private router: Router) { }
 
   public ngOnInit(): void {
@@ -40,25 +42,34 @@ export class ResultsComponent implements OnInit{
   //Clicks on a particular card
   //Will be redirected to payment page.
   handleButtonClick(data: any) {
-    const vehicle_id = data.vehicle_id;
-    const pickupDate = moment(this.searchDetails.pickupDate).format("YYYY-MM-DD");
-    const dropoffDate = moment(this.searchDetails.dropoffDate).format("YYYY-MM-DD");
-    const pickuplocID = this.searchDetails.pickupLocData.location_id;
-    const dropoflocID = (this.searchDetails.intercity == false ? pickuplocID : this.searchDetails.dropoffLocData.location_id);
-    const requestBooking = {
-      vehicle_id : vehicle_id,
-      pickup_date : pickupDate,
-      dropoff_date : dropoffDate,
-      dropoff_location : pickuplocID,
-      pickup_location : dropoflocID
-    }
 
-    console.log(requestBooking);
-    this.bookingService.bookingBegin(requestBooking).subscribe(response =>{
-      if(response){
-        this.bookingService.updateBooking(response);
-        this.router.navigate(["/home/payment"]);
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigate(['/login']);
+      this.popup.openSnackBar({
+        message: "Please login to create any booking ",
+        status: 'alert',
+        duration: 3000
+      });
+    }
+    else {
+      const vehicle_id = data.vehicle_id;
+      const pickupDate = moment(this.searchDetails.pickupDate).format("YYYY-MM-DD");
+      const dropoffDate = moment(this.searchDetails.dropoffDate).format("YYYY-MM-DD");
+      const pickuplocID = this.searchDetails.pickupLocData.location_id;
+      const dropoflocID = (this.searchDetails.intercity == false ? pickuplocID : this.searchDetails.dropoffLocData.location_id);
+      const requestBooking = {
+        vehicle_id: vehicle_id,
+        pickup_date: pickupDate,
+        dropoff_date: dropoffDate,
+        dropoff_location: pickuplocID,
+        pickup_location: dropoflocID
       }
-    })
+      this.bookingService.bookingBegin(requestBooking).subscribe(response => {
+        if (response) {
+          this.bookingService.updateBooking(response);
+          this.router.navigate(["/home/payment"]);
+        }
+      })
+    }
   }
 }

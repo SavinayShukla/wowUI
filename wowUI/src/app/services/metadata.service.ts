@@ -30,4 +30,8 @@ export class MetadataService {
   updateMetaData(newMetaData: any) {
     this.metadataSubject.next(newMetaData);
   }
+
+  getMetaData() {
+    this.metadataSubject.value;
+  }
 }

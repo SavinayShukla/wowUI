@@ -18,31 +18,30 @@ import { MetadataService } from '../../services/metadata.service';
 export class AddpaymentComponent {
   loading:boolean = false;
   addPaymentForm: FormGroup;
+  submitted:boolean = false;
 
   constructor(private metadataService: MetadataService, private paymentService: PaymentService, private fb: FormBuilder, private popup : PopupService) {
     this.addPaymentForm = this.fb.group({
       payment_method: ['', [Validators.required]],
-      card_number: ['', [Validators.required]],
+      card_number: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       card_name: ['', [Validators.required]],
       card_exp_date: ['', [Validators.required]],
-      card_zipcode: ['', [Validators.required]],
+      card_zipcode: ['', [Validators.required, Validators.pattern(/^\d+$/), Validators.minLength(5), Validators.maxLength(5)]],
     });
   }
 
   addPayment() {
-    this.loading = true;
+    this.submitted = true;
     if (this.addPaymentForm.valid) {
+      this.loading = true;
       const paymentData = this.addPaymentForm.value;
       this.paymentService.addPayment(paymentData).subscribe(
         (response) => {
           this.loading = false;
-          //Call the API again,
           this.metadataService.fetchMetaData().subscribe((metadata) => {
             //Update Observable.
           this.metadataService.updateMetaData(metadata);
           });
-          // this._bottomSheetRef.dismiss();
-          // this.success = true;
           this.paymentService.fetchPayments();
           this.popup.openSnackBar({
             message : "Added a payment method successfully!",
