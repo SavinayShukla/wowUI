@@ -38,6 +38,19 @@ export class UserService {
     return this.http.post(this.forgotPasswordURI, request);
   }
 
+  newPassword(uidb64 : string, token: string, request: any): Observable<any> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post(
+      `${environment.host}/user/reset-password/${uidb64}/${token}/`,request, {headers});
+  }
+
+  verifyUser(uidb64 : string, token: string){
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post(
+      `${environment.host}/user/verify/${uidb64}/${token}/`, {headers}
+    );
+  }
+
   updateBasicInfo(user: any): Observable<any> {
     const token = this.authService.getAccessToken();
     if(token){

@@ -24,7 +24,7 @@ export const routes: Routes = [
                    { path: 'results', component: ResultsComponent, pathMatch: 'full', 
                             children: [{ path: '', component: ResultcardComponent, pathMatch: 'full' }]},
 
-                   { path: 'payment', component: PaymentComponent, canActivate: [authGuard, profileGuardGuard, cardSelectedGuardGuard], pathMatch: 'full'},
+                   { path: 'payment', component: PaymentComponent, canActivate: [authGuard, cardSelectedGuardGuard, profileGuardGuard], pathMatch: 'full'},
                    { path: 'profile', component: ProfileComponent, canActivate: [authGuard], pathMatch: 'full'},
                    { path: 'orders', component: OrdersComponent, canActivate: [authGuard], pathMatch: 'full'}
                   ]
@@ -32,8 +32,8 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent, pathMatch: 'full' },
     { path: 'logout', redirectTo: 'home', pathMatch: 'full' },
     { path: 'register', component: RegisterComponent, pathMatch: 'full' },
-    { path: 'verify', component: VerifyEmailComponent, pathMatch: 'full' },
-    { path: 'new-password', component: NewPasswordComponent, pathMatch: 'full' },
+    { path: 'user/verify/:uidb64/:token', component: VerifyEmailComponent, pathMatch: 'full' },
+    { path: 'user/new-password/:uidb64/:token', component: NewPasswordComponent, pathMatch: 'full' },
     { path: '**', redirectTo: 'any' }
     
 ];
