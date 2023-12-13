@@ -12,15 +12,16 @@
     <div class="grid grid-cols-6 w-full">
         <!-- ----  CAR INFO ---- -->
         <div class="p-2 col-span-2 flex flex-col items-center justify-center">
+            <img class="h-[40%] mb-4 rounded-2xl shadow-xl shadow-emerald-400/20" [src]='orderData.vehicle_id.url'>
             <div class="text-emerald-500 uppercase text-sm tracking-wider font-bold">{{orderData.vehicle_id.make}}</div>
             <div class="text-gray-200 font-bold text-xl">{{orderData.vehicle_id.model}} {{orderData.vehicle_id.make_year | slice:0:4}}</div>
             <div class="text-emerald-600 text-sm">{{orderData.vehicle_id.class_id.vehicle_class}}</div>
             <div class="py-2 flex flex-row">
                 <span
-                    class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Comfortable</span>
+                    class="bg-indigo-300 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Comfortable</span>
                 <span
-                    class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Economic</span>
-                <span class="bg-teal-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Popular</span>
+                    class="bg-indigo-300 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Economic</span>
+                <span class="bg-teal-300 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Popular</span>
             </div>
         </div>
 
@@ -34,14 +35,15 @@
                 <div *ngIf = 'orderData.coupon_id != null' class="text-emerald-500 font-bold text-xs tracking-wider uppercase">Coupon Applied</div>
             </div>
             <div class="w-full flex flex-col items-end justify-between">
-                <div class="text-end mb-8">
+                <div class="text-end mb-8 pt-4">
                     <div class="text-gray-400 text-xs font-bold uppercase tracking-wider">Billing Address</div>
-                    <div class="text-gray-200 mt-1 font-bold text-xl uppercase tracking-wider">{{user.first_name}} {{user.last_name}}</div>
+                    <div *ngIf='user.last_name.length <= 7' class="text-gray-200 mt-1 font-bold text-xl uppercase tracking-wider">{{user.first_name}} {{user.last_name}}</div>
+                    <div *ngIf='user.last_name.length > 7' class="text-gray-200 mt-1 font-bold text-lg uppercase tracking-wider">{{user.first_name}} {{user.last_name}}</div>
                     <div class="text-gray-300 mt-1 font-bold text-sm">{{user.address_street}}</div>
                     <div class="text-gray-300 mt-1 font-bold text-sm">{{user.address_city}}, {{user.address_state}}</div>
                     <div class="text-gray-300 mt-1 font-bold text-sm">{{user.address_zipcode}}</div>
                 </div>
-                <div class="text-end">
+                <div class="text-end pb-5">
                     <div class="text-gray-400 text-xs font-bold uppercase tracking-wider">Shipping Address</div>
                     <div class="text-gray-200 mt-1 font-bold text-sm">{{orderData.dropoff_location.address_street}}</div>
                     <div class="text-gray-200 mt-1 font-bold text-sm">{{orderData.dropoff_location.address_city}}, {{orderData.dropoff_location.address_state}}</div>
@@ -84,6 +86,10 @@
                 <div class="flex justify-between mb-1">
                     <span><h1 class="font-semibold text-xs tracking-wider uppercase text-gray-400">Subtotal</h1></span>
                     <span><h1 class="font-semibold text-xs tracking-wider uppercase text-gray-400">${{pricingInfo.subtotal | number: '1.2-2'}}</h1></span>
+                </div>
+                <div *ngIf='pricingInfo.discount_status' class="flex justify-between mb-1">
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-emerald-400">Discount</h1></span>
+                    <span><h1 class="font-semibold text-xs tracking-wider uppercase text-emerald-400">${{pricingInfo.discount | number: '1.2-2'}}</h1></span>
                 </div>
                 <div class="flex justify-between mb-1">
                     <span><h1 class="font-semibold text-xs tracking-wider uppercase text-gray-400">Taxes</h1></span>

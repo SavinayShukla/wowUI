@@ -15,11 +15,11 @@ export class ResultcardComponent {
   @Output() buttonClick = new EventEmitter();
   @Input() resultData: any;
 
-  carData = {
-    lexus : "/assets/cars/lexus.jpg",
-    audi : "/assets/cars/audi.jpg",
-    buick : "/assets/cars/enclave.jpg"
-  }
+  // carData = {
+  //   lexus : "/assets/cars/lexus.jpg",
+  //   audi : "/assets/cars/audi.jpg",
+  //   buick : "/assets/cars/enclave.jpg"
+  // }
 
   constructor(private sharedService: SharedService){}
   

@@ -1,6 +1,9 @@
 <div class="bg-primary py-8">
   <div class="container mx-auto px-4 flex flex-col items-center">
     <h1 class="text-4xl font-semibold mb-4 text-gray-200">Shopping Cart</h1>
+    <div class="countdown-timer">
+      <h1 class="uppercase tracking-wider text-amber-400 text-xs font-bold mb-3">Booking session valid till: &nbsp;{{ seconds }} seconds</h1>
+    </div>
     <div class="w-full grid grid-cols-3 gap-8">
       <div class="col-span-2">
         <div class="bg-secondary rounded-lg shadow-md p-9 mb-4">
@@ -44,7 +47,7 @@
                     +1 {{user.phone}}
                   </h2>
                 </div>
-                <div class="w-full col-span-2">
+                <div *ngIf = 'metadata.individual_customer.length > 0' class="w-full col-span-2">
                   <h2 class="tracking-widest text-xs uppercase px-2 font-bold text-gray-400">
                     License Registered
                   </h2>
@@ -68,10 +71,10 @@
                     Employee Information
                   </h2>
                   <h2 class="text-md px-2 text-gray-200">
-                    Some Commpany
+                    {{metadata.corporate_customer[0].corporation.name}}
                   </h2>
                   <h2 class="text-sm px-2 text-gray-200">
-                    Reg No: 159102115
+                    Emp #:&nbsp;{{metadata.corporate_customer[0].emp_id}}
                   </h2>
                 </div>
               </div>

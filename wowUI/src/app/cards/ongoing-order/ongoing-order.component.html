@@ -18,12 +18,16 @@
     <!-- THIS IS THE BODY and CONTENT -->
     <div class="py-3 flex flex-row">
         <div class="p-2 w-1/4 col-span-1 flex flex-col items-center justify-center">
-            <img class="w-1/2" src="assets/cars/lexus.jpg" />
+            <img class="w-1/2" [src]="orderData.vehicle_id.url" />
         </div>
         <div class="p-2 w-2/4 col-span-1 flex flex-col items-start justify-center">
-            <div class="text-emerald-500 uppercase text-sm tracking-wider font-bold">{{orderData.vehicle_id.make}}</div>
+            <div class="uppercase text-sm tracking-wider font-bold  w-full">
+                <span class="text-start text-emerald-500">{{orderData.vehicle_id.make}}</span>
+            </div>
             <div class="text-gray-200 font-bold text-xl">{{orderData.vehicle_id.model}} {{orderData.vehicle_id.make_year | slice:0:4}}</div>
             <div class="text-emerald-500 text-sm">{{orderData.vehicle_id.class_id.vehicle_class}}</div>
+            <div class="mt-4 text-gray-500 uppercase text-xs font-bold tracking-wider">VIN :&nbsp;{{orderData.vehicle_id.vin_number}}</div>
+            <div class="text-gray-500 uppercase text-xs font-bold tracking-wider">License Plate Number :&nbsp;{{orderData.vehicle_id.license_plate_number}}</div>
             <div class="py-2 flex flex-row">
                 <!-- <span
                     class="bg-indigo-300 text-white-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">Comfortable</span>

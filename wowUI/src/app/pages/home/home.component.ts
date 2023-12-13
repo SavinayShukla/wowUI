@@ -134,8 +134,7 @@ export class HomeComponent implements OnInit {
 
       this.shared.getVehicles(request).subscribe((response) => {
         if (response) {
-          console.log(response);
-          this.shared.updateResults(response.data);
+          this.shared.updateResults(response);
           this.router.navigate(['home/results'])
         }
       });

@@ -4,17 +4,17 @@
             hover:-translate-y-1 
             hover:shadow-emerald-400/40 
             bg-secondary rounded-md
-            shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)]
             ">
 
     <div class="w-1/4 flex flex-col ml-6 items-center justify-center">
-      <img *ngIf ='resultData.make === "Buick"' class="h-[80%] rounded-2xl shadow-xl shadow-emerald-400/20" [src]="carData.buick" alt="Car Image">
+      <!-- <img *ngIf ='resultData.make === "Buick"' class="h-[80%] rounded-2xl shadow-xl shadow-emerald-400/20" [src]="carData.buick" alt="Car Image">
       <img *ngIf ='resultData.make === "Lexus"' class="h-[80%] rounded-2xl shadow-xl shadow-emerald-400/20" [src]="carData.lexus" alt="Car Image">
       <img *ngIf ='resultData.make === "Audi"' class="h-[80%] rounded-2xl shadow-xl shadow-emerald-400/20" [src]="carData.audi" alt="Car Image">
       <img *ngIf ='resultData.make != "Audi" && 
                   resultData.make != "Lexus" &&
-                  resultData.make != "Buick"' class="h-[80%] rounded-2xl shadow-xl shadow-emerald-400/20" src="assets/car.png" alt="Car Image">
+                  resultData.make != "Buick"' class="h-[80%] rounded-2xl shadow-xl shadow-emerald-400/20" src="assets/car.png" alt="Car Image"> -->
       <!-- <img class="h-auto"  alt="Car Image"> -->
+      <img class="h-[80%] rounded-2xl shadow-xl shadow-emerald-400/20" [src] = 'resultData.url' alt="Car Image">
     </div>
     <div class="w-3/5">
       <div class="py-8 px-8 flex flex-col justify-between">

@@ -96,7 +96,7 @@
                     </form>
 
                     <!-- ################## EMPLOYEE CARD ####################-->
-                    <div *ngIf = 'staticInfo.user_type == "C"' id="employee" [formGroup]="corpInfoForm" (submit) = 'updateCorporateInfo()'
+                    <form *ngIf = 'staticInfo.user_type == "C"' id="employee" [formGroup]="corpInfoForm" (submit) = 'updateCorporateInfo()'
                         class="rounded-lg py-8 bg-secondary shadow shadow-2xl flex flex-row items-center">
                         <div class="w-1/6 h-full flex flex-col items-center justify-center">
                             <div matBadge="!" [matBadgeHidden]="this.metadata.is_profile_complete" matBadgeColor="warn">
@@ -106,11 +106,11 @@
                         <div class="grid grid-cols-4 gap-x-2 gap-y-4">
                             <div class="col-span-2">
                                 <h1 class="text-emerald-500 uppercase text-sm font-bold">Company</h1>
-                                <p class="w-full text-sm font-bold tracking-wide text-gray-300 bg-secondary focus:outline-none placeholder:font-bold">Corp Company </p>
+                                <p class="w-full text-sm pt-1 font-bold tracking-wide text-gray-300 bg-secondary focus:outline-none placeholder:font-bold">{{metadata.corporation[0].name}}</p>
                             </div>
                             <div class="">
                                 <h1 class="text-emerald-500 uppercase text-sm font-bold">Company Reg No.</h1>
-                                <p class="text-sm font-bold tracking-wide text-gray-300 bg-secondary focus:outline-none placeholder:font-bold">CMP11220</p>
+                                <p class="text-sm pt-1 font-bold tracking-wide text-gray-300 bg-secondary focus:outline-none placeholder:font-bold">{{metadata.corporation[0].registration_number}}</p>
                             </div>
                             <div class="">
                                 <h1 class="text-emerald-500 uppercase text-sm font-bold">Employee No.</h1>
@@ -124,7 +124,7 @@
                                 duration-300 ease-in-out">Update Corporate Info</button>
                             </div>
                         </div>
-                    </div>
+                    </form>
 
                     <!-- ################## INDIVIDUAL CARD ####################-->
                     <form *ngIf = 'staticInfo.user_type == "I"' id="employee" [formGroup]="persInfoForm"

@@ -39,7 +39,10 @@ export class CompOrdersComponent implements OnInit {
 
     //Taxes
     const subtotal = daily_charge + extra_charge;
-    const grand_total = daily_charge + extra_charge + (0.18 * subtotal);
+    const discount_status = (this.orderData.coupon_id != undefined );
+    const discount = (discount_status) ? (1 - this.orderData.coupon_id.discount/100) : 1;
+    const sub_grand_total = (daily_charge + extra_charge) * discount;
+    const grand_total = ( sub_grand_total ) +  (0.18 * sub_grand_total);
     const pay_date = moment(this.orderData.dropoff_date).format("MM/DD/YYYY");
     const pickup_date = moment(this.orderData.pickup_date).format("MM/DD/YYYY");
     const order_number = this.orderData.booking_id;
@@ -53,16 +56,16 @@ export class CompOrdersComponent implements OnInit {
       miles: miles,
       vehicle_rate: vehicle_rate,
       extra_rate: extra_rate,
-      taxes: (0.18 * subtotal),
+      taxes: (0.18 * sub_grand_total),
       subtotal: subtotal,
       extra_charge: extra_charge,
       grand_total: grand_total,
+      discount_status: discount_status,
+      discount: (daily_charge + extra_charge) - sub_grand_total,
       pay_date: pay_date,
       pick_date: pickup_date,
       order_number: order_number,
       isMultipleCards : isMultipleCards
     }
-
-    console.log(this.pricingInfo);
   }
 }

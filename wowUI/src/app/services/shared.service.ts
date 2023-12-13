@@ -20,7 +20,7 @@ export class SharedService {
   private pricingSubject = new BehaviorSubject<any>(null);
   pricingInfo$ = this.pricingSubject.asObservable();
 
-  private resultSubject = new BehaviorSubject<any[]>([]);
+  private resultSubject = new BehaviorSubject<any>(null);
   results$ = this.resultSubject.asObservable();
   
   constructor(private http: HttpClient) { }

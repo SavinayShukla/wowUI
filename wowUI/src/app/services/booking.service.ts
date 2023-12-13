@@ -146,7 +146,9 @@ export class BookingService {
   }
 
   refreshBookingLists(){
+
     this.getBookings().subscribe((response : any[]) => {
+      console.log(response);
       this.pendingOrderSubject.value.length = 0;
       this.ongoingOrdersSubject.value.length = 0;
       this.completedOrdersSubject.value.length = 0;

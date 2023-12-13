@@ -147,6 +147,7 @@ export class ProfileComponent implements OnInit {
 
   //Update Corporate Information.
   updateCorporateInfo() {
+    console.log("CCC");
     if (this.corpInfoForm.valid) {
       const corpInfoUpdated = this.corpInfoForm.value;
       this.userService.updateOtherInfo(corpInfoUpdated).subscribe(

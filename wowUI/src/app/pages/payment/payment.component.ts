@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedService } from '../../services/shared.service';
 import {MatSelectModule} from '@angular/material/select';
@@ -12,6 +12,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookingService } from '../../services/booking.service';
 import { PopupService } from '../../services/alerts/popup.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -21,7 +22,7 @@ import { PopupService } from '../../services/alerts/popup.service';
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css'
 })
-export class PaymentComponent implements OnInit {
+export class PaymentComponent implements OnInit, OnDestroy {
   selectedCarData: any;
   metadata: any;
   paymentData: any;
@@ -33,9 +34,12 @@ export class PaymentComponent implements OnInit {
   confirmForm: FormGroup; 
   bookingData: any;
   warning = false;
+  public seconds: number = 60;
+  private intervalId: any;
 
   constructor(private sharedService: SharedService, private fb : FormBuilder, private metadataService: MetadataService,
-    private _bottomSheet: MatBottomSheet, private popup: PopupService, private bookingService: BookingService) {
+    private _bottomSheet: MatBottomSheet, private popup: PopupService, 
+    private router: Router, private bookingService: BookingService) {
     this.confirmForm = this.fb.group({
       booking_id: [''],
       payment_id: this.fb.array([], [Validators.minLength(1)]),
@@ -75,7 +79,11 @@ export class PaymentComponent implements OnInit {
       this.pricing = data;
     });
     this.sharedService.updatePricing();
-    
+    this.startTimer();
+  }
+
+  ngOnDestroy() {
+    this.clearTimer();
   }
   
   openModal(){
@@ -141,10 +149,28 @@ export class PaymentComponent implements OnInit {
         duration : 3000
       });
     });
-    
-    // this.confirmForm.patchValue({
-    //   coupon_code: this.bookingData.booking_id,
-    // });
+  }
+
+  startTimer() {
+    this.intervalId = setInterval(() => {
+      if (this.seconds > 0) {
+        this.seconds--;
+      } else {
+        clearInterval(this.intervalId);
+        this.router.navigate(['/home']);
+        this.popup.openSnackBar({
+          message : "Booking Session Timed Out!",
+          status : 'alert',
+          duration : 3000
+        });
+      }
+    }, 1000); // Update every 1 second
+  }
+
+  clearTimer() {
+    // Clear the interval and reset the seconds
+    clearInterval(this.intervalId);
+    this.seconds = 60; // or reset to your initial value
   }
 
 }
