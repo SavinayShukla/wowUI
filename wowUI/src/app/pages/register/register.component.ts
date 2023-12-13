@@ -95,18 +95,31 @@ export class RegisterComponent {
     this.submitted = true;
     if (this.regForm.valid) {
       this.isLoading = true;
+      let requestBody = null;
       const selectedStateObject = this.states.find(state => state.state === this.regForm.get('address_state')?.value);
-      if (selectedStateObject)
-        this.regForm.patchValue({ address_state: selectedStateObject.abbr }, { emitEvent: false });
+      if (selectedStateObject){
+        requestBody = {
+          first_name: this.regForm.get('first_name')?.value,
+          last_name: this.regForm.get('last_name')?.value,
+          email: this.regForm.get('email')?.value,
+          phone: this.regForm.get('phone')?.value,
+          password: this.regForm.get('password')?.value,
+          address_street: this.regForm.get('address_street')?.value,
+          address_city: this.regForm.get('address_city')?.value,
+          address_state: selectedStateObject.abbr,
+          address_zipcode: this.regForm.get('address_zipcode')?.value
+        }
+      }
+      //   this.regForm.patchValue({ address_state: selectedStateObject.abbr }, { emitEvent: false });
 
-      const signUpData = this.regForm.value;
-      delete signUpData.confirmPassword;
-      console.log(signUpData);
+      // const signUpData = this.regForm.value;
+      // delete signUpData.confirmPassword;
+      // console.log(signUpData);
 
-      if (selectedStateObject)
-        this.regForm.patchValue({ address_state: selectedStateObject.abbr }, { emitEvent: false });
+      // if (selectedStateObject)
+      //   this.regForm.patchValue({ address_state: selectedStateObject.abbr }, { emitEvent: false });
 
-      this.userService.registerUser(signUpData).subscribe(
+      this.userService.registerUser(requestBody).subscribe(
         (response) => {
           this.isLoading = false;
           this.alertService.openSnackBar({
@@ -159,7 +172,6 @@ export class RegisterComponent {
       if (!control) {
         return null;
       }
-      console.log(control.value);
       const isValidState = this.states.some(state => state.state === control);
       return isValidState ? null : { invalidState: true };
     };
